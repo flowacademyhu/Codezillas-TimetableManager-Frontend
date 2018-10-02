@@ -9,11 +9,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TimeTableComponent } from './components/time-table/time-table.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 import { AuthService } from './services/auth.service';
 import { ClassService } from './services/class.service';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'registration', component: RegistrationComponent },
   { path: 'profile', component: ProfileComponent }
 ];
 
@@ -22,7 +24,8 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     ProfileComponent,
-    TimeTableComponent
+    TimeTableComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

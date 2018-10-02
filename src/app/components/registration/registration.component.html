@@ -1,0 +1,43 @@
+<div class="body">
+  <img src="../../assets/img/flow.png">
+  <div class="form-box mx-auto shadow">
+    <div class="form-top pb-4">
+      <h3>Registration</h3>
+    </div>
+    <div class="form-bottom">
+      <form role="form" action="" method="post" class="registration-form">
+        <div class="form-group iconInside">
+          <label class="sr-only" for="name">Name</label>
+          <i class="fa fa-user" id="icon"></i>
+          <input [(ngModel)]="registerUserData.name" type="text" name="name" placeholder="Name" class="form-control"
+            id="name" required>
+        </div>
+        <div class="form-group iconInside">
+            <label class="sr-only" for="nickname">Nickname</label>
+            <i class="fa fa-user-secret" id="icon"></i>
+            <input [(ngModel)]="registerUserData.nickname" type="text" name="nickname" placeholder="Nickname" class="form-control"
+              id="nickname" required>
+          </div>
+        <div class="form-group iconInside">
+          <label class="sr-only" for="email">Email</label>
+          <i class="fa fa-envelope" id="icon"></i>
+          <input [(ngModel)]="registerUserData.email" type="email" name="email" placeholder="Email" class="form-control"
+            id="email" required>
+        </div>
+        <div class="form-group iconInside">
+          <label class="sr-only" for="password">Password</label>
+          <i class="fa fa-lock" id="icon"></i>
+          <input [(ngModel)]="registerUserData.password" type="password" name="password" placeholder="Password" class="form-control"
+            id="password" required minlength="6" maxlength="30">
+        </div>
+        <div class="form-group iconInside">
+            <label class="sr-only" for="confirmPassword">Password</label>
+            <i class="fa fa-lock" id="icon"></i>
+            <input type="password" name="confirmPassword" placeholder="Confirm password" class="form-control"
+              id="confirmPassword" required minlength="6" maxlength="30">
+          </div>
+        <button (click)="registerUser()" type="submit" class="btn btn-block mt-5 mx-auto">SIGN UP</button>
+      </form>
+    </div>
+  </div>
+</div>

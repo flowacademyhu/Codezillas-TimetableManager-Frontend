@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { TimeTableComponent } from './components/time-table/time-table.component';
+import { AuthService } from './services/auth.service';
+import { ClassService } from './services/class.service';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -29,7 +31,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     AngularFontAwesomeModule
   ],
-  providers: [],
+  providers: [AuthService, ClassService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

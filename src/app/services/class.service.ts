@@ -9,7 +9,7 @@ import { Class } from '../models/Class.model';
 export class ClassService {
   classes: Class[];
 
-  private classListUrl = 'http://localhost:8080/categories';
+  private classListUrl = 'http://localhost:8080/classes';
   constructor(private httpClient: HttpClient) { }
 
   getAll(): Observable<Class[]> {

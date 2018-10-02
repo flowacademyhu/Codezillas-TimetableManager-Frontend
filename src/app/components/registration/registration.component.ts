@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user.model';
 import { Router } from '../../../../node_modules/@angular/router';
 
 @Component({
@@ -8,7 +9,7 @@ import { Router } from '../../../../node_modules/@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  registerUserData = {};
+  registerUserData = {} as User;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -16,8 +17,11 @@ export class RegistrationComponent implements OnInit {
   }
 
   registerUser() {
-    this.authService.registerUser(this.registerUserData)
-      .subscribe(res => this.onRegistrationSuccess(), err => console.log(err));
+    if (this.registerUserData.password.length > 5 && this.registerUserData.password === this.registerUserData.confirmPassword) {
+      console.log('fsfsdfsd');
+      this.authService.registerUser(this.registerUserData)
+        .subscribe(res => this.onRegistrationSuccess(), err => console.log(err));
+    }
   }
 
   onRegistrationSuccess() {

@@ -18,14 +18,17 @@ export class RegistrationComponent implements OnInit {
 
   registerUser() {
     if (this.registerUserData.password.length > 5 && this.registerUserData.password === this.registerUserData.confirmPassword) {
-      console.log('fsfsdfsd');
       this.authService.registerUser(this.registerUserData)
-        .subscribe(res => this.onRegistrationSuccess(), err => console.log(err));
+        .subscribe(res => this.onRegistrationSuccess(), err => this.onError(err));
     }
   }
 
   onRegistrationSuccess() {
     this.router.navigate(['profile']);
+  }
+
+  onError(err) {
+    alert(err.statusText);
   }
 
 }

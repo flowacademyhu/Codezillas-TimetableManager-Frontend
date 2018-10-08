@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   onRegistrationSuccess() {
-    this.router.navigate(['profile']);
+    this.router.navigate(['orarend']);
   }
 
   onError(err) {

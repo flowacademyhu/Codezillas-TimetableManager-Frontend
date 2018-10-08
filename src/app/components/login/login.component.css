@@ -49,7 +49,6 @@ p {
 
 .form-box {
   max-width: 30vw;
-  min-width: 250px;
   background-color: white;
   padding: 3%;
   margin-top: auto;
@@ -71,4 +70,27 @@ p {
 
 .btn:hover {
   background-color: #06b1a5;
+}
+
+@media (max-width: 1000px) {
+  .form-box {
+    padding: 5%;
+    margin-top: 5%;
+    min-width: 350px;
+  }
+}
+
+@media (max-width: 700px) {
+  .form-box {
+    padding: 5%;
+    margin-top: 15%;
+  }
+}
+
+@media (max-width: 400px) {
+  .form-box {
+    padding: 5%;
+    margin-top: 20%;
+    min-width: 250px;
+  }
 }

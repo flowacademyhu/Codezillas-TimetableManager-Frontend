@@ -12,14 +12,14 @@ export class ClassService {
   classes: Class[] = [{
     id: 1,
     startDate: new Date(2018, 9, 5, 10),
-    endDate: new Date(2018, 9, 5, 10),
+    endDate: new Date(2018, 9, 5, 12),
     comment: 'cica',
     subjectId: 1,
     groupId: 1
   }, {
     id: 2,
-    startDate: 0,
-    endDate: 0,
+    startDate: new Date(2018, 9, 4, 12),
+    endDate: new Date(2018, 9, 4, 14),
     comment: 'kacsa',
     subjectId: 2,
     groupId: 1
@@ -29,11 +29,11 @@ export class ClassService {
   subjects: Subject[] = [{
     id: 1,
     title: 'linux',
-    color: '#2a9010'
+    color: '#00bfb2'
   }, {
     id: 2,
     title: 'javascript',
-    color: '#f05797'
+    color: '#088078'
   }
   ];
 

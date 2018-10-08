@@ -14,11 +14,15 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AuthService } from './services/auth.service';
 import { ClassService } from './services/class.service';
+import { SubjectComponent } from './components/subject/subject.component';
+import { GroupComponent } from './components/group/group.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent },
+  { path: 'subjects', component: SubjectComponent },
+  { path: 'groups', component: GroupComponent }
 ];
 
 @NgModule({
@@ -28,7 +32,9 @@ const appRoutes: Routes = [
     ProfileComponent,
      TimeTableComponent,
     RegistrationComponent,
-    SidebarComponent
+    SidebarComponent,
+    SubjectComponent,
+    GroupComponent
     ],
   imports: [
     BrowserModule,

@@ -15,10 +15,12 @@ export class TimeTableComponent {
 
   classes: Class[];
   subjects: Subject[];
-  currentDate: Date = new Date(2018, 9, 3);
+  currentDate: Date = new Date(2018, 9, 8);
 
   constructor(classService: ClassService) {
-    this.classes = classService.getClasses();
+    classService.getClasses().subscribe((res) => {
+      this.classes = res;
+    });
     this.subjects = classService.getSubjects();
   }
 

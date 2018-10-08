@@ -1,10 +1,10 @@
 export class Class {
   constructor(
     public id: number,
-    public startDate: Date,
-    public endDate: Date,
     public comment: String,
-    public subjectId: number,
-    public groupId: number
+    public endDate: Date,
+    public startDate: Date,
+    public groupId: number,
+    public subjectId: number
   ) { }
 }

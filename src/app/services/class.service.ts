@@ -40,8 +40,8 @@ export class ClassService {
   private classListUrl = 'http://localhost:8080/classes';
   constructor(private httpClient: HttpClient) { }
 
-  getClasses() {
-    return this.classes;
+  getClasses(): Observable<Class[]> {
+    return this.httpClient.get<Class[]>('http://localhost:8080/classes/all');
   }
 
   getSubjects() {

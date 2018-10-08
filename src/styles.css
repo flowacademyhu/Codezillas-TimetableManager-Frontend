@@ -1,5 +1,6 @@
 body {
   font-family: 'Poppins-Regular', sans-serif;
+  overflow-x: hidden;
 }
 
 #authBackground {
@@ -11,4 +12,8 @@ body {
 
 #logo {
   padding: 2%;
+}
+
+.col-md-1 {
+  padding: 0;
 }

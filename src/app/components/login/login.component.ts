@@ -21,10 +21,10 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSuccess() {
-    this.router.navigate(['orarend']);
+    this.router.navigate(['timetable']);
   }
 
   goToRegistration() {
-    this.router.navigate(['regisztracio']);
+    this.router.navigate(['registration']);
   }
 }

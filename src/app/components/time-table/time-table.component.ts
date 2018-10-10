@@ -80,7 +80,7 @@ export class TimeTableComponent implements OnInit {
   getSubjectById(id) {
     for (let i = 0; i < this.subjects.length; i++) {
       if (id === this.subjects[i].id) {
-        return this.subjects[i].title;
+        return this.subjects[i];
       }
     }
     return 'name not found';

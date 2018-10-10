@@ -15,15 +15,15 @@ export class SidebarComponent implements OnInit {
   }
 
   goToProfile() {
-    this.router.navigate(['orarend']);
+    this.router.navigate(['timetable']);
   }
 
   goToSubjects() {
-    this.router.navigate(['tantargyak']);
+    this.router.navigate(['subjects']);
   }
 
   goToGroups() {
-    this.router.navigate(['csapatok']);
+    this.router.navigate(['groups']);
   }
 
   logout() {

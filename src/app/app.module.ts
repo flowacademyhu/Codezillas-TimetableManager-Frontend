@@ -8,33 +8,38 @@ import { DxSchedulerModule, DxSchedulerComponent, DxButtonModule, DxTemplateModu
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { ProfileComponent } from './components/profile/profile.component';
  import { TimeTableComponent } from './components/time-table/time-table.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AuthService } from './services/auth.service';
 import { ClassService } from './services/class.service';
+import { GroupService } from './services/group.service';
+import { UserService } from './services/user.service';
 import { SubjectComponent } from './components/subject/subject.component';
 import { GroupComponent } from './components/group/group.component';
+import { ButtonColorDirective } from './button-color.directive';
+import { UsersComponent } from './components/users/users.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'regisztracio', component: RegistrationComponent },
-  { path: 'orarend', component: ProfileComponent },
-  { path: 'tantargyak', component: SubjectComponent },
-  { path: 'csapatok', component: GroupComponent }
+  { path: 'registration', component: RegistrationComponent },
+  { path: 'timetable', component: TimeTableComponent },
+  { path: 'subjects', component: SubjectComponent },
+  { path: 'groups', component: GroupComponent },
+  { path: 'groups/:id/:name', component: UsersComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ProfileComponent,
      TimeTableComponent,
     RegistrationComponent,
     SidebarComponent,
     SubjectComponent,
-    GroupComponent
+    GroupComponent,
+    ButtonColorDirective,
+    UsersComponent
     ],
   imports: [
     BrowserModule,
@@ -46,7 +51,7 @@ const appRoutes: Routes = [
     DxTemplateModule,
     DxButtonModule,
   ],
-  providers: [AuthService, ClassService],
+  providers: [AuthService, ClassService, GroupService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

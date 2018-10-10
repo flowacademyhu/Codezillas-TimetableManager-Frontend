@@ -19,10 +19,10 @@ import { GroupComponent } from './components/group/group.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'registration', component: RegistrationComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'subjects', component: SubjectComponent },
-  { path: 'groups', component: GroupComponent }
+  { path: 'regisztracio', component: RegistrationComponent },
+  { path: 'orarend', component: ProfileComponent },
+  { path: 'tantargyak', component: SubjectComponent },
+  { path: 'csapatok', component: GroupComponent }
 ];
 
 @NgModule({

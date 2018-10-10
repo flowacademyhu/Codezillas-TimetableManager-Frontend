@@ -1,9 +1,6 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-1">
-      <app-sidebar></app-sidebar>
-    </div>
-    <div class="col-md-11 timetable">
-    </div>
+  <div class="buttons mx-auto">
+    <button *ngFor="let group of groups; index as i" [appButtonColorIndex]="i" type="button" class="btn shadow" (click)="goToGroup(group.id, group.name)">
+      <h3>{{group.name}}</h3>
+    </button>
+    <button type="button" class="btn shadow" (click)="addNew()"><i class="fa fa-plus"></i><br></button>
   </div>
-</div>

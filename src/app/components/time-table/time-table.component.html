@@ -23,9 +23,9 @@
       [dataSource]="subjects">
   </dxi-resource>
 
-  <div *dxTemplate="let showtime of 'appointment-template'">
+  <div [ngStyle]="{backgroundColor: getSubjectById(showtime.fk_id_subject).color}" *dxTemplate="let showtime of 'appointment-template'">
       <div class='showtime-preview'>
-          <div>{{getSubjectById(showtime.fk_id_subject)}}</div>
+          <div>{{getSubjectById(showtime.fk_id_subject).title}}</div>
           <div class='dropdown-appointment-dates'>
               {{(showtime.startDate | date:'shortTime') + ' - ' + (showtime.endDate | date:'shortTime')}}
           </div>

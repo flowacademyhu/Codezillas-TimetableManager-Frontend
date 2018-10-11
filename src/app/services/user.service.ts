@@ -8,10 +8,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
   users: User[];
-  private userListUrl = 'http://localhost:8080/groups';
+  private groupListUrl = 'http://localhost:8080/groups';
+  private userListUrl = 'http://localhost:8080/users';
+
   constructor(private httpClient: HttpClient) { }
 
   getAll(groupId, groupName): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.userListUrl}/${groupId}/${groupName}`);
+    return this.httpClient.get<User[]>(`${this.groupListUrl}`, {params: {id: groupId, name: groupName}});
+  }
+
+  delete(id) {
+    return this.httpClient.delete<User>(`${this.userListUrl}/${id}`);
+  }
+
+  updateUsers(users) {
+    return this.httpClient.post<User[]>(this.userListUrl, users);
   }
 }

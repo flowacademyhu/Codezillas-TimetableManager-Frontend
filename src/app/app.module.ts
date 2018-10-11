@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { DxSchedulerModule, DxSchedulerComponent, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -19,6 +20,7 @@ import { SubjectComponent } from './components/subject/subject.component';
 import { GroupComponent } from './components/group/group.component';
 import { ButtonColorDirective } from './button-color.directive';
 import { UsersComponent } from './components/users/users.component';
+import { SubjectService } from './services/subject.service';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -50,8 +52,9 @@ const appRoutes: Routes = [
     DxSchedulerModule,
     DxTemplateModule,
     DxButtonModule,
+    NgbModule
   ],
-  providers: [AuthService, ClassService, GroupService, UserService],
+  providers: [AuthService, ClassService, GroupService, SubjectService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

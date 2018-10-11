@@ -1,3 +1,44 @@
-<p>
-  users works!
-</p>
+<h3>{{groupName}}</h3>
+<table class="table table-hover mx-auto">
+  <thead class="thead">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Név</th>
+      <th scope="col">E-mail cím</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; index as i">
+      <td>{{i + 1}}</td>
+      <td>{{user.name}} ({{user.nickname}})</td>
+      <td>{{user.email}}</td>
+      <td><i class="fa fa-times" (click)="delete(user.id)"></i></td>
+    </tr>
+  </tbody>
+</table>
+<div class="wrapper">
+  <button id="addBtn" (click)="addNew(updatedUsers)"><i class="fa fa-plus mx-auto"></i></button>
+</div>
+
+<ng-template #updatedUsers let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add new user</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form role="form" method="POST" #myForm="ngForm">
+        <div class="form-group mx-auto">
+          <label for="name">Name</label>
+          <div class="input-group">
+            <input [(ngModel)]="updatedUserList.name" id="name" class="form-control" name="name" required>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline" id="saveBtn" (click)="updateUsers(); modal.close('Save click')">Save</button>
+    </div>
+  </ng-template>

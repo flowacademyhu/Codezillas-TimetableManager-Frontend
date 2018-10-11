@@ -16,4 +16,8 @@ export class GroupService {
   getAll(): Observable<Group[]> {
     return this.httpClient.get<Group[]>(this.groupListUrl);
   }
+
+  newGroup(group) {
+    return this.httpClient.post<Group>(this.groupListUrl, group);
+  }
 }

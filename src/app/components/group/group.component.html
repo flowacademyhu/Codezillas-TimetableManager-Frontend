@@ -1,0 +1,28 @@
+<div class="buttons mx-auto">
+  <button *ngFor="let group of groups; index as i" [appButtonColorIndex]="i" type="button" class="btn shadow" (click)="goToGroup(group.id, group.name)">
+    <h3>{{group.name}}</h3>
+  </button>
+  <button type="button" class="btn shadow" (click)="addNew(group)"><i class="fa fa-plus"></i><br></button>
+</div>
+
+<ng-template #group let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Új csapat létrehozása</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form role="form" method="POST" #myForm="ngForm">
+      <div class="form-group mx-auto">
+        <label for="name">Név</label>
+        <div class="input-group">
+          <input [(ngModel)]="newGroup.name" id="name" class="form-control" name="name" required>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline" id="saveBtn" (click)="createGroup(); modal.close('Save click')">Mentés</button>
+  </div>
+</ng-template>

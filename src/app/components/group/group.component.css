@@ -1,0 +1,55 @@
+.buttons{
+  height: 90vh;
+  width: 100vw;
+  padding-top: 2%;
+  padding-left: 15%;
+}
+
+.btn {
+  color: white;
+  background-color: #00bfb2;
+  width: 140px;
+  height: 140px;
+  margin-top: 50px;
+  margin-left: 25px !important;
+  border-radius: 0.2rem;
+}
+
+.btn:hover {
+  background-color: #09b3a7;
+}
+
+#saveBtn {
+  border: none;
+  border-radius: 0;
+  background-color: #00bfb2;
+  color: white;
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  margin: auto !important;
+}
+
+@media (max-width: 700px) {
+  .buttons {
+    padding-top: 15%;
+  }
+
+  .btn {
+    width: 100px;
+    height: 100px;
+    margin-left: 15px !important;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+}
+
+i {
+  font-size: 60px;
+}
+
+h3 {
+  text-shadow: 1px 1px grey;
+}

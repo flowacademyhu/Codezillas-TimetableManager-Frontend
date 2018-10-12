@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GroupService {
   groups: Group[];
-  private groupListUrl = 'http://localhost:8080/groups';
+  private groupListUrl = '/groups';
 
   constructor(private httpClient: HttpClient) { }
 

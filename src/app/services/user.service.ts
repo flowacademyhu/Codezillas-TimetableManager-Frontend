@@ -8,8 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
   users: User[];
-  private groupListUrl = 'http://localhost:8080/groups';
-  private userListUrl = 'http://localhost:8080/createUser';
+  private groupListUrl = '/groups';
+  private userListUrl = '/createUser';
 
   constructor(private httpClient: HttpClient) { }
 

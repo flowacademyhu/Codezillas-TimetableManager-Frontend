@@ -8,11 +8,11 @@ import { Class } from '../models/class.model';
 })
 export class ClassService {
 
-  private classListUrl = 'http://localhost:8080/classes';
+  private classListUrl = '/classes';
   constructor(private httpClient: HttpClient) { }
 
   getClasses(): Observable<Class[]> {
-    return this.httpClient.get<Class[]>('http://localhost:8080/classes/all');
+    return this.httpClient.get<Class[]>('/classes/all');
   }
 
 }

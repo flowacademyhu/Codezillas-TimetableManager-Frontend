@@ -13,7 +13,7 @@ export class UsersComponent implements OnInit {
   closeResult: string;
   groupId: String;
   groupName: String;
-  updatedUserList = {};
+  newUser = {};
   users: User[] = [{
     id: 1,
     name: 'kutya',
@@ -47,17 +47,17 @@ export class UsersComponent implements OnInit {
   }
 
   delete(id) {
-    this.userService.delete(id);
-    // .subscribe(res => this.updateResult(), err => console.log(err));
+    this.userService.delete(id)
+      .subscribe(res => console.log('success'), err => console.log(err));
   }
 
-  updateUsers() {
-    this.userService.updateUsers(this.updatedUserList);
+  addUser() {
+    this.userService.addNewUser(this.newUser, this.groupId)
+      .subscribe(res => console.log('success'), err => console.log(err));
   }
 
-  addNew(updatedUsers) {
-    console.log('fsfsd');
-    this.modalService.open(updatedUsers, { centered: true }).result.then((result) => {
+  addNew(user) {
+    this.modalService.open(user, { centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

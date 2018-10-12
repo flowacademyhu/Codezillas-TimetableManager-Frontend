@@ -13,17 +13,17 @@
       <td>{{i + 1}}</td>
       <td>{{user.name}} ({{user.nickname}})</td>
       <td>{{user.email}}</td>
-      <td><i class="fa fa-times" (click)="delete(user.id)"></i></td>
+      <td><i class="fa fa-times" title="Törlés" (click)="delete(user.id)"></i></td>
     </tr>
   </tbody>
 </table>
 <div class="wrapper">
-  <button id="addBtn" (click)="addNew(updatedUsers)"><i class="fa fa-plus mx-auto"></i></button>
+  <button id="addBtn" (click)="addNew(user)" title="Hozzáadás"><i class="fa fa-plus mx-auto"></i></button>
 </div>
 
-<ng-template #updatedUsers let-modal>
+<ng-template #user let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Add new user</h4>
+      <h4 class="modal-title" id="modal-basic-title">Új felhasználó hozzáadása</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -31,14 +31,14 @@
     <div class="modal-body">
       <form role="form" method="POST" #myForm="ngForm">
         <div class="form-group mx-auto">
-          <label for="name">Name</label>
+          <label for="email">E-mail cím</label>
           <div class="input-group">
-            <input [(ngModel)]="updatedUserList.name" id="name" class="form-control" name="name" required>
+            <input [(ngModel)]="newUser.email" type="email" id="email" class="form-control" name="email" required>
           </div>
         </div>
       </form>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-outline" id="saveBtn" (click)="updateUsers(); modal.close('Save click')">Save</button>
+      <button type="submit" class="btn btn-outline" id="saveBtn" (click)="addUser(); modal.close('Save click')">Mentés</button>
     </div>
   </ng-template>

@@ -8,9 +8,19 @@ import { Subject } from '../models/subject.model';
 })
 export class SubjectService {
 
+  private subjectListUrl = 'http://localhost:8080/subjects/all';
+
   constructor(private httpClient: HttpClient) { }
 
   getSubjects(): Observable<Subject[]> {
-    return this.httpClient.get<Subject[]>('/subjects/all');
+    return this.httpClient.get<Subject[]>(this.subjectListUrl);
+  }
+
+  addNewSubject(subject) {
+    return this.httpClient.post<Subject>(this.subjectListUrl, subject);
+  }
+
+  delete(id) {
+    return this.httpClient.delete<Subject>(`${this.subjectListUrl}/${id}`);
   }
 }

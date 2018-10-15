@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getAll(this.groupId, this.groupName).subscribe(res => this.users = res, err => console.log(err));
+    this.userService.getUsersFromGroup(this.groupId, this.groupName).subscribe(res => this.users = res, err => console.log(err));
   }
 
   delete(id) {

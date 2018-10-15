@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-box mx-auto shadow">
+        <div class="form-top pb-4">
+          <h3>Új tantárgy felvétele</h3>
+        </div>
+        <div class="form-bottom">
+          <form role="form" action="" method="post" class="registration-form">
+            <div class="form-group">
+              <label class="sr-only" for="subject">Tantárgy neve</label>
+              <input [(ngModel)]="newSubject.title" type="text" name="subject" placeholder="Tantárgy neve" class="form-control"
+                id="subject" required>
+            </div>
+            <div class="form-group pt-2">
+              <p-colorPicker [(ngModel)]="newSubject.color" name="color" id="color" required [inline]="true"></p-colorPicker>
+              <p class="mt-2">Választott szín: <span id="colorSample" [style.backgroundColor]="newSubject.color"></span></p>
+            </div>
+            <button (click)="addSubject()" type="submit" class="btn btn-block mt-5 mx-auto">HOZZÁADÁS</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <table class="table table-hover mx-auto">
+        <thead class="thead">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tantárgy</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let subject of subjects; index as i">
+            <td>{{i + 1}}</td>
+            <td>{{subject.title}}</td>
+            <td><i class="fa fa-times" title="Törlés" (click)="delete(subject.id)"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

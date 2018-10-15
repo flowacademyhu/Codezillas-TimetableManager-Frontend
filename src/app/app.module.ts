@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -6,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { DxSchedulerModule, DxSchedulerComponent, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ColorPickerModule} from 'primeng/colorpicker';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -35,7 +37,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-     TimeTableComponent,
+    TimeTableComponent,
     RegistrationComponent,
     SidebarComponent,
     SubjectComponent,
@@ -45,6 +47,7 @@ const appRoutes: Routes = [
     ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
@@ -52,7 +55,8 @@ const appRoutes: Routes = [
     DxSchedulerModule,
     DxTemplateModule,
     DxButtonModule,
-    NgbModule
+    NgbModule,
+    ColorPickerModule
   ],
   providers: [AuthService, ClassService, GroupService, SubjectService, UserService],
   bootstrap: [AppComponent]

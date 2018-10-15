@@ -13,7 +13,8 @@
   [height]="600"
   appointmentTemplate="appointment-template"
   appointmentTooltipTemplate="tooltip-template"
-  (onAppointmentFormCreated)="onAppointmentFormCreated($event)">
+  (onAppointmentFormCreated)="onAppointmentFormCreated($event)"
+  (onOptionChanged)="onOptionChanged($event)">
 
   <dxo-editing [allowAdding]="true"></dxo-editing>
 

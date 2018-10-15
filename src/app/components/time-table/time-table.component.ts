@@ -33,6 +33,18 @@ export class TimeTableComponent implements AfterViewInit {
     });
   }
 
+  onOptionChanged(event) {
+    this.scheduler.instance.repaint();
+    if (event.name !== 'dataSource') {
+      this.classService.getClasses(
+        this.scheduler.instance.getStartViewDate(),
+        this.scheduler.instance.getEndViewDate()
+        ).subscribe((res) => {
+        this.classes = res;
+     });
+    }
+  }
+
   onAppointmentFormCreated(classes) {
     const that = this,
       form = classes.form,

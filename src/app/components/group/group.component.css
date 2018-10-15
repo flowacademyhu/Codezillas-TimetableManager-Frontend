@@ -8,16 +8,26 @@
 .btn {
   color: white;
   background-color: #00bfb2;
-  border-radius: 0;
   width: 140px;
   height: 140px;
   margin-top: 50px;
   margin-left: 25px !important;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
 }
 
 .btn:hover {
   background-color: #09b3a7;
+}
+
+#saveBtn {
+  border: none;
+  border-radius: 0;
+  background-color: #00bfb2;
+  color: white;
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  margin: auto !important;
 }
 
 @media (max-width: 700px) {

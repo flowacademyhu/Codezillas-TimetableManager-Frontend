@@ -8,7 +8,7 @@ import { Class } from '../models/class.model';
 })
 export class ClassService {
 
-  private classListUrl = 'http://localhost:8080/classes/';
+  private classListUrl = '/classes/';
   constructor(private httpClient: HttpClient) { }
 
 // TODO: stardate, enddate, userID and/or groupID

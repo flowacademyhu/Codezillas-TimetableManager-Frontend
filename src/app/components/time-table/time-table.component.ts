@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Subject } from '../../models/subject.model';
 import { Class } from '../../models/class.model';
 import { ClassService } from '../../services/class.service';
@@ -10,19 +10,22 @@ import { DxSchedulerComponent } from 'devextreme-angular';
   templateUrl: './time-table.component.html',
   styleUrls: ['./time-table.component.css']
 })
-export class TimeTableComponent implements OnInit {
+export class TimeTableComponent implements AfterViewInit {
 
   @ViewChild(DxSchedulerComponent) scheduler: DxSchedulerComponent;
 
-  classes: Class[];
-  subjects: Subject[];
-  currentDate: Date = new Date(2018, 9, 8);
+  classes: Class[] = [];
+  subjects: Subject[] = [];
+  currentDate = Date.now();
 
   constructor(private classService: ClassService, private subjectService: SubjectService) {
   }
 
-  ngOnInit() {
-    this.classService.getClasses().subscribe((res) => {
+  ngAfterViewInit() {
+    this.classService.getClasses(
+      this.scheduler.instance.getStartViewDate(),
+      this.scheduler.instance.getEndViewDate()
+      ).subscribe((res) => {
       this.classes = res;
     });
     this.subjectService.getSubjects().subscribe((res) => {
@@ -66,8 +69,9 @@ export class TimeTableComponent implements OnInit {
     }]);
   }
 
-  editDetails(showtime) {
-    this.scheduler.instance.showAppointmentPopup(this.getDataObj(showtime), false);
+  // cls refers to class
+  editDetails(cls) {
+    this.scheduler.instance.showAppointmentPopup(this.getDataObj(cls), false);
   }
 
   getDataObj(objData) {
@@ -84,5 +88,5 @@ export class TimeTableComponent implements OnInit {
       }
     }
     return 'name not found';
-  }
+}
 }

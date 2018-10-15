@@ -3,5 +3,6 @@ export class Subject {
     public id: number,
     public title: String,
     public color: String,
+    public userIds: number[]
   ) { }
 }

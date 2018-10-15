@@ -8,8 +8,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
   users: User[];
-  private groupListUrl = '/groups';
-  private userListUrl = '/createUser';
+  private groupListUrl = 'http://localhost:8080/groups';
+  private userListUrl = 'http://localhost:8080/users';
+  private newUsertUrl = 'http://localhost:8080/createUser';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -19,7 +20,11 @@ export class UserService {
 
   addNewUser(user, groupId) {
     user.groupId = groupId;
-    return this.httpClient.post<User>(this.userListUrl, user);
+    return this.httpClient.post<User>(this.newUsertUrl, user);
+  }
+
+  getMentors() {
+    return this.httpClient.get<User[]>(this.userListUrl);
   }
 
   delete(id) {

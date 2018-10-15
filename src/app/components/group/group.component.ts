@@ -57,6 +57,10 @@ export class GroupComponent implements OnInit {
     });
   }
 
+  delete(groupId) {
+    this.groupService.delete(groupId).subscribe(res => console.log('success'), err => console.log(err));
+  }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

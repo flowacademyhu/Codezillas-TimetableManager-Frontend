@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-users',
@@ -37,13 +38,15 @@ export class UsersComponent implements OnInit {
     confirmPassword: 'ffsdf'
   }];
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private modalService: NgbModal) {
+  constructor(private userService: UserService, private groupService: GroupService, private route: ActivatedRoute,
+    private modalService: NgbModal) {
     this.groupId = route.snapshot['_routerState'].url.split('/')[2];
-    this.groupName = route.snapshot['_routerState'].url.split('/')[3];
+    // this.groupName = route.snapshot['_routerState'].url.split('/')[3];
   }
 
   ngOnInit() {
     this.userService.getUsersFromGroup(this.groupId, this.groupName).subscribe(res => this.users = res, err => console.log(err));
+    this.groupService.getOne(this.groupId).subscribe(group => this.groupName = group.name, err => console.log(err));
   }
 
   delete(id) {

@@ -8,6 +8,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { DxSchedulerModule, DxSchedulerComponent, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ColorPickerModule} from 'primeng/colorpicker';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {InputTextModule} from 'primeng/inputtext';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -57,7 +59,9 @@ const appRoutes: Routes = [
     DxTemplateModule,
     DxButtonModule,
     NgbModule,
-    ColorPickerModule
+    ColorPickerModule,
+    MultiSelectModule,
+    InputTextModule
   ],
   providers: [AuthService, ClassService, GroupService, SubjectService, UserService,{
     provide: HTTP_INTERCEPTORS,

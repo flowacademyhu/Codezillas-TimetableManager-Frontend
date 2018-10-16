@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -16,10 +16,21 @@ export class AuthService {
   }
 
   loginUser(user) {
-    return this.http.post<any>(this.loginUrl, user);
+    let body = new HttpParams()
+    .set('username', user.email)
+    .set('password', user.password);
+
+  return this.http.post('/login', body.toString(), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+    });
   }
 
   logout() {
     this.router.navigate(['']);
+  }
+
+  getJsessionId() {
+    sessionStorage.getItem('token');
   }
 }

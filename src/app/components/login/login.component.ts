@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user.model';
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
@@ -22,10 +23,14 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSuccess(res) {
-    let jsonStr = JSON.stringify(res); 
-    let jsonData = JSON.parse(jsonStr); 
+    const jsonStr = JSON.stringify(res);
+    const jsonData = JSON.parse(jsonStr);
+    const user: User = jsonData.user;
+    /* console.log('user: ' + user); */
     sessionStorage.setItem('token', jsonData.token);
+    sessionStorage.setItem('user', JSON.stringify(user));
     sessionStorage.setItem('role', jsonData.roles);
+    
     this.router.navigate(['timetable']);
   }
 

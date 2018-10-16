@@ -31,6 +31,6 @@ export class AuthService {
   }
 
   getJsessionId() {
-    sessionStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 }

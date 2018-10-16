@@ -15,28 +15,7 @@ export class UsersComponent implements OnInit {
   groupId: String;
   groupName: String;
   newUser = {};
-  users: User[] = [{
-    id: 1,
-    name: 'kutya',
-    nickname: 'kutyi',
-    email: 'kutya@gmail.com',
-    password: 'fdsf',
-    confirmPassword: 'ffsdf'
-  }, {
-    id: 2,
-    name: 'kacsa',
-    nickname: 'Bubó',
-    email: 'kacsa@gmail.com',
-    password: 'fdsf',
-    confirmPassword: 'ffsdf'
-  }, {
-    id: 3,
-    name: 'cica',
-    nickname: 'cicuka',
-    email: 'cica@gmail.com',
-    password: 'fdsf',
-    confirmPassword: 'ffsdf'
-  }];
+  users: User[];
 
   constructor(private userService: UserService, private groupService: GroupService, private route: ActivatedRoute,
     private modalService: NgbModal) {
@@ -45,12 +24,13 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getUsersFromGroup(this.groupId, this.groupName).subscribe(res => this.users = res, err => console.log(err));
+    this.userService.getUsersFromGroup(this.groupId).subscribe(res => this.users = res, err => console.log(err));
+    console.log(this.users);
     this.groupService.getOne(this.groupId).subscribe(group => this.groupName = group.name, err => console.log(err));
   }
 
-  delete(id) {
-    this.userService.delete(id)
+  removeFromGroup(user) {
+    this.userService.removeFromGroup(user)
       .subscribe(res => console.log('success'), err => console.log(err));
   }
 

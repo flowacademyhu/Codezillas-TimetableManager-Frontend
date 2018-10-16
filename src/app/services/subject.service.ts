@@ -8,7 +8,7 @@ import { Subject } from '../models/subject.model';
 })
 export class SubjectService {
 
-  private subjectListUrl = '/subjects';
+  private subjectListUrl = '/subjects/';
 
   constructor(private httpClient: HttpClient) { }
 

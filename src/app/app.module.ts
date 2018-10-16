@@ -63,7 +63,8 @@ const appRoutes: Routes = [
     MultiSelectModule,
     InputTextModule
   ],
-  providers: [AuthService, ClassService, GroupService, SubjectService, UserService,{
+  providers: [AuthService, ClassService, GroupService,
+    SubjectService, UserService, {
     provide: HTTP_INTERCEPTORS,
     useClass: SpringbootInterceptor,
     multi: true

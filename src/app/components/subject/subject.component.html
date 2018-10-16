@@ -9,9 +9,10 @@
           <form role="form" action="" method="post" class="registration-form">
             <div class="form-group">
               <label class="sr-only" for="subject">Tantárgy neve</label>
-              <input [(ngModel)]="newSubject.title" type="text" name="subject" placeholder="Tantárgy neve" class="form-control"
-                id="subject" required>
+              <input [(ngModel)]="newSubject.title" pInputText type="text" name="title" placeholder="Tantárgy neve" class="form-control"
+                id="title" required>
             </div>
+            <p-multiSelect [options]="mentors" optionLabel="nickname" [(ngModel)]="mentorList" name="mentorList" id="mentorList" [panelStyle]="{maxWidth:'23em'}"></p-multiSelect>
             <div class="form-group pt-2">
               <p-colorPicker [(ngModel)]="newSubject.color" name="color" id="color" required [inline]="true"></p-colorPicker>
               <p class="mt-2">Választott szín: <span id="colorSample" [style.backgroundColor]="newSubject.color"></span></p>

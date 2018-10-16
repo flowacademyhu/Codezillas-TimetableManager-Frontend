@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private registerUrl = '/registration';
-  private loginUrl = '/login';
+  private registerUrl = 'http://localhost:8080/registration';
+  private loginUrl = 'http://localhost:8080/login';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -16,7 +16,7 @@ export class AuthService {
   }
 
   loginUser(user) {
-    let body = new HttpParams()
+    const body = new HttpParams()
     .set('username', user.email)
     .set('password', user.password);
 

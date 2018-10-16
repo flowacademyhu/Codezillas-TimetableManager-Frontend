@@ -13,20 +13,7 @@ export class GroupComponent implements OnInit {
   closeResult: string;
   newGroup = {};
 
-  groups: Group[] = [{
-    id: 1,
-    name: 'Alfa'
-  }, {
-    id: 2,
-    name: 'Béta'
-  }, {
-    id: 3,
-    name: 'Gamma'
-  }, {
-    id: 4,
-    name: 'Delta'
-  }
-  ];
+  groups: Group[];
   constructor(private groupService: GroupService, private router: Router,
               private modalService: NgbModal) { }
 

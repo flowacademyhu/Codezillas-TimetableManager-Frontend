@@ -33,7 +33,7 @@
         <div class="form-group iconInside">
             <label class="sr-only" for="confirmPassword">Jelszó megerősítése</label>
             <i class="fa fa-lock" id="icon"></i>
-            <input [(ngModel)]="registerUserData.confirmPassword" type="password" name="confirmPassword" placeholder="Jelszó megerősítése" class="form-control"
+            <input [(ngModel)]="confirmPassword" type="password" name="confirmPassword" placeholder="Jelszó megerősítése" class="form-control"
               id="confirmPassword" required minlength="6" maxlength="30">
           </div>
         <button (click)="registerUser()" type="submit" class="btn btn-block mt-5 mx-auto">REGISZTRÁCIÓ</button>

@@ -17,35 +17,8 @@ export class SubjectComponent implements OnInit {
     color: '',
     userIds: []
   };
-  subjects: Subject[] = [{
-    id: 1,
-    title: 'Java',
-    color: '#00bfb2',
-    userIds: [1]
-  }];
-
-  mentors: User[] = [{
-    id: 1,
-    name: 'kutya',
-    nickname: 'kutyi',
-    email: 'kutya@gmail.com',
-    password: 'fdsf',
-    confirmPassword: 'ffsdf'
-  }, {
-    id: 2,
-    name: 'kacsa',
-    nickname: 'Bubó',
-    email: 'kacsa@gmail.com',
-    password: 'fdsf',
-    confirmPassword: 'ffsdf'
-  }, {
-    id: 3,
-    name: 'cica',
-    nickname: 'cicuka',
-    email: 'cica@gmail.com',
-    password: 'fdsf',
-    confirmPassword: 'ffsdf'
-  }];
+  subjects: Subject[];
+  mentors: User[];
 
   constructor(private subjectService: SubjectService, private userService: UserService) { }
 

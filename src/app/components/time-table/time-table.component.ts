@@ -34,8 +34,8 @@ export class TimeTableComponent implements AfterViewInit {
   }
 
   onOptionChanged(event) {
-    this.scheduler.instance.repaint();
-    if (event.name !== 'dataSource') {
+    if (event.name === 'startDate') {
+      this.scheduler.instance.repaint();
       this.classService.getClasses(
         this.scheduler.instance.getStartViewDate(),
         this.scheduler.instance.getEndViewDate()

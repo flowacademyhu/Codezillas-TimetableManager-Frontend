@@ -5,6 +5,11 @@ export class User {
     public nickname: String,
     public email: String,
     public password: String,
-    public confirmPassword: String,
+    public activationCode: String,
+    public roles: String[],
+    public classIds: number[],
+    public subjectIds: number[],
+    public groupId: number,
+    public enabled: boolean
   ) { }
 }

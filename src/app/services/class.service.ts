@@ -20,4 +20,12 @@ export class ClassService {
      {params: {SDS: sds, SDE: sde}});
   }
 
+  newClass(class) {
+    return this.httpClient.post<Class>(this.classListUrl, class);
+  }
+
+  delete(id) {
+    return this.httpClient.delete<Class>(`${this.classListUrl}/${id}`);
+  }
+
 }

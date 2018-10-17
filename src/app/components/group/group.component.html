@@ -1,6 +1,6 @@
 <div class="buttons mx-auto">
   <button *ngFor="let group of groups; index as i" [appButtonColorIndex]="i" type="button" class="btn shadow" (click)="goToGroup(group.id, group.name)">
-    <div class="btnContent"><i class="fa fa-times" (click)="delete(group.id)"></i><h3>{{group.name}}</h3></div>
+    <div class="btnContent"><i class="fa fa-times" (click)="delete(group.id)"></i><h5>{{group.name}}</h5></div>
   </button>
   <button type="button" class="btn shadow" (click)="addNew(group)"><i class="fa fa-plus"></i><br></button>
 </div>

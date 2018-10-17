@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user.model';
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
@@ -25,8 +26,10 @@ export class LoginComponent implements OnInit {
   onLoginSuccess(res) {
     const jsonStr = JSON.stringify(res);
     const jsonData = JSON.parse(jsonStr);
-    sessionStorage.setItem('token', jsonData.token);
-    sessionStorage.setItem('role', jsonData.roles);
+    const user: User = jsonData.user;
+    window.localStorage.setItem('token', jsonData.token);
+    window.localStorage.setItem('user', JSON.stringify(user));
+    window.localStorage.setItem('role', jsonData.roles);
     this.router.navigate(['timetable']);
   }
 

@@ -11,7 +11,9 @@ export class SpringbootInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     // Clone the request to add the new header
-    const clonedRequest = request.clone({ headers: request.headers.set('Set-Cookie', 'JSESSIONID=' + this.auth.getJsessionId()) });
+    const clonedRequest = request.clone({ 
+      headers: request.headers.set('Set-Cookie', 'JSESSIONID=' + this.auth.getJsessionId())
+   });
 
     // Pass control to the next request
     return next.handle(clonedRequest);

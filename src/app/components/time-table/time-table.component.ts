@@ -78,8 +78,7 @@ export class TimeTableComponent implements AfterViewInit {
       editorType: 'dxDateBox',
       editorOptions: {
         width: '100%',
-        type: 'datetime',
-        readOnly: true
+        type: 'datetime'
       }
     }]);
   }
@@ -117,8 +116,8 @@ export class TimeTableComponent implements AfterViewInit {
       .subscribe(res => this.ngAfterViewInit(), err => console.log(err));
   }
 
-  addNew(class) {
-    this.modalService.open(class, { centered: true }).result.then((result) => {
+  addNew(cls) {
+    this.modalService.open(cls, { centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

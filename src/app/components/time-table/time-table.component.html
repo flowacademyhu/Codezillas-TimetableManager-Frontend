@@ -1,68 +1,63 @@
 <div class="wrapper">
-    <button class="addBtn mt-4" (click)="addNew(class)">Új óra felvétele</button>
+  <button class="addBtn mt-4" (click)="addNew(class)">Új óra felvétele</button>
 </div>
-<dx-scheduler
-  id="scheduler"
-  [dataSource]="classes"
-  [views]="['day', 'workWeek']"
-  currentView="workWeek"
-  [firstDayOfWeek]="0"
-  [startDayHour]="9"
-  [endDayHour]="18"
-  [showAllDayPanel]="false"
-  [currentDate]="currentDate"
-  [crossScrollingEnabled]="true"
-  [cellDuration]="30"
-  [height]="550"
-  appointmentTemplate="appointment-template"
-  appointmentTooltipTemplate="tooltip-template"
-  (onAppointmentFormCreated)="onAppointmentFormCreated($event)"
+<dx-scheduler id="scheduler" [dataSource]="classes" [views]="['day', 'workWeek']" currentView="workWeek"
+  [firstDayOfWeek]="0" [startDayHour]="9" [endDayHour]="18" [showAllDayPanel]="false" [currentDate]="currentDate"
+  [crossScrollingEnabled]="true" [cellDuration]="30" [height]="550" appointmentTemplate="appointment-template"
+  appointmentTooltipTemplate="tooltip-template" (onAppointmentFormCreated)="onAppointmentFormCreated($event)"
   (onOptionChanged)="onOptionChanged($event)">
 
   <dxo-editing [allowAdding]="true"></dxo-editing>
 
-  <dxi-resource
-      fieldExpr="subjectId"
-      [useColorAsDefault]="true"
-      [dataSource]="subjects">
+  <dxi-resource fieldExpr="subjectId" [useColorAsDefault]="true" [dataSource]="subjects">
   </dxi-resource>
-  <div
-   [ngStyle]="{backgroundColor: getSubjectById(class.fk_id_subject).color}"
-   *dxTemplate="let class of 'appointment-template'">
-      <div class='class-preview'>
-          <div>{{getSubjectById(class.subjectId).title}}</div>
-          <div class='dropdown-appointment-dates'>
-              {{(class.startDate | date:'shortTime') + ' - ' + (class.endDate | date:'shortTime')}}
-          </div>
+  <div [ngStyle]="{backgroundColor: getSubjectById(class.fk_id_subject).color}" *dxTemplate="let class of 'appointment-template'">
+    <div class='class-preview'>
+      <div>{{getSubjectById(class.subjectId).title}}</div>
+      <div class='dropdown-appointment-dates'>
+        {{(class.startDate | date:'shortTime') + ' - ' + (class.endDate | date:'shortTime')}}
       </div>
+    </div>
   </div>
 
   <div *dxTemplate="let class of 'tooltip-template'">
-      <div class='subject-tooltip'>
-          <dx-button text='Törlés' (onClick)='delete(class.id)' type="default">
-          </dx-button>
-      </div>
+    <div class='subject-tooltip'>
+      <dx-button text='Törlés' (onClick)='delete(class.id)' type="default">
+      </dx-button>
+    </div>
   </div>
 </dx-scheduler>
 
 <ng-template #class let-modal>
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Új csapat létrehozása</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Új óra felvétele</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form role="form" method="POST" #myForm="ngForm">
+      <div class="form-group mx-auto">
+        <label for="name">Kezdés</label>
+        <div class="input-group">
+          <p-calendar showTime="true" hourFormat="24" [(ngModel)]="newClass.startDate"></p-calendar>
         </div>
-        <div class="modal-body">
-          <form role="form" method="POST" #myForm="ngForm">
-            <div class="form-group mx-auto">
-              <label for="name">Megjegyzés</label>
-              <div class="input-group">
-                <input [(ngModel)]="newClass.comment" id="comment" class="form-control" name="comment" required>
-              </div>
-            </div>
-          </form>
+      </div>
+      <div class="form-group mx-auto">
+        <label for="name">Befejezés</label>
+        <div class="input-group">
+          <p-calendar showTime="true" hourFormat="24" [(ngModel)]="newClass.endDate"></p-calendar>
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-outline" id="saveBtn" (click)="createClass(); modal.close('Save click')">Mentés</button>
+      </div>
+      <div class="form-group mx-auto">
+        <label for="name">Megjegyzés</label>
+        <div class="input-group">
+          <input [(ngModel)]="newClass.comment" id="comment" class="form-control" name="comment" required>
         </div>
-      </ng-template>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline" id="saveBtn" (click)="createClass(); modal.close('Save click')">Mentés</button>
+  </div>
+</ng-template>

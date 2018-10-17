@@ -11,8 +11,6 @@ export class ClassService {
   private classListUrl = '/classes/';
   constructor(private httpClient: HttpClient) { }
 
-// TODO: stardate, enddate, userID and/or groupID
-
   getClasses(startDate: Date, endDate: Date): Observable<Class[]> {
     const sds = startDate.getTime().toString();
     const sde = endDate.getTime().toString();
@@ -20,8 +18,8 @@ export class ClassService {
      {params: {SDS: sds, SDE: sde}});
   }
 
-  newClass(class) {
-    return this.httpClient.post<Class>(this.classListUrl, class);
+  newClass(cls) {
+    return this.httpClient.post<Class>(this.classListUrl, cls);
   }
 
   delete(id) {

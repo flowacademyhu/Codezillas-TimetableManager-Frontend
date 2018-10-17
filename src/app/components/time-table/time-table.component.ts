@@ -4,6 +4,7 @@ import { Class } from '../../models/class.model';
 import { ClassService } from '../../services/class.service';
 import { SubjectService } from '../../services/subject.service';
 import { DxSchedulerComponent } from 'devextreme-angular';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-time-table',
@@ -14,11 +15,13 @@ export class TimeTableComponent implements AfterViewInit {
 
   @ViewChild(DxSchedulerComponent) scheduler: DxSchedulerComponent;
 
+  closeResult: string;
   classes: Class[] = [];
   subjects: Subject[] = [];
   currentDate = Date.now();
+  newClass = {};
 
-  constructor(private classService: ClassService, private subjectService: SubjectService) {
+  constructor(private classService: ClassService, private subjectService: SubjectService, private modalService: NgbModal) {
   }
 
   ngAfterViewInit() {
@@ -34,7 +37,7 @@ export class TimeTableComponent implements AfterViewInit {
   }
 
   onOptionChanged(event) {
-    if (event.name === 'startDate') {
+    if (event.name === 'currentDate') {
       this.scheduler.instance.repaint();
       this.classService.getClasses(
         this.scheduler.instance.getStartViewDate(),
@@ -75,15 +78,21 @@ export class TimeTableComponent implements AfterViewInit {
       editorType: 'dxDateBox',
       editorOptions: {
         width: '100%',
-        type: 'datetime',
-        readOnly: true
+        type: 'datetime'
       }
     }]);
   }
 
+  /*
   // cls refers to class
   editDetails(cls) {
     this.scheduler.instance.showAppointmentPopup(this.getDataObj(cls), false);
+  }
+*/
+
+  delete(id) {
+    this.classService.delete(id).subscribe(res =>
+      this.ngAfterViewInit(), err => console.log(err));
   }
 
   getDataObj(objData) {
@@ -100,5 +109,28 @@ export class TimeTableComponent implements AfterViewInit {
       }
     }
     return 'name not found';
-}
+  }
+
+  createClass() {
+    this.classService.newClass(this.newClass)
+      .subscribe(res => this.ngAfterViewInit(), err => console.log(err));
+  }
+
+  addNew(cls) {
+    this.modalService.open(cls, { centered: true }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 }

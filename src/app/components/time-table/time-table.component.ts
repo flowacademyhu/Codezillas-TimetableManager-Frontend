@@ -56,7 +56,7 @@ export class TimeTableComponent implements AfterViewInit {
 
     form.option('items', [{
       label: {
-        text: 'Subject'
+        text: 'Tantárgy'
       },
       editorType: 'dxSelectBox',
       dataField: 'subjectId',
@@ -66,6 +66,20 @@ export class TimeTableComponent implements AfterViewInit {
         valueExpr: 'id',
       }
     }, {
+      label: {
+        text: 'Mentor'
+      },
+      editorType: 'dxSelectBox',
+      dataField: 'userId',
+      editorOptions: {
+        items: that.subjects,
+        displayExpr: 'text',
+        valueExpr: 'id',
+      }
+    }, {
+      label: {
+        text: 'Ettől'
+      },
       dataField: 'startDate',
       editorType: 'dxDateBox',
       editorOptions: {
@@ -73,23 +87,23 @@ export class TimeTableComponent implements AfterViewInit {
         type: 'datetime',
       }
     }, {
+      label: {
+        text: 'Eddig'
+      },
       name: 'endDate',
       dataField: 'endDate',
       editorType: 'dxDateBox',
       editorOptions: {
         width: '100%',
-        type: 'datetime',
-        readOnly: true
+        type: 'datetime'
       }
-    }]);
+    }
+  ]);
   }
 
-  /*
-  // cls refers to class
-  editDetails(cls) {
-    this.scheduler.instance.showAppointmentPopup(this.getDataObj(cls), false);
+  onAppointmentAdding(event) {
+    console.log(event.appointmentData);
   }
-*/
 
   delete(id) {
     this.classService.delete(id).subscribe(res =>
@@ -117,8 +131,8 @@ export class TimeTableComponent implements AfterViewInit {
       .subscribe(res => this.ngAfterViewInit(), err => console.log(err));
   }
 
-  addNew(class) {
-    this.modalService.open(class, { centered: true }).result.then((result) => {
+  addNew(cls) {
+    this.modalService.open(cls, { centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

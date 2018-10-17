@@ -33,12 +33,12 @@ export class SubjectComponent implements OnInit {
     });
     this.newSubject.userIds = this.ids;
     this.subjectService.addNewSubject(this.newSubject)
-      .subscribe(res => console.log('success'), err => console.log(err));
+      .subscribe(res => this.ngOnInit(), err => console.log(err));
   }
 
   delete(id) {
     this.subjectService.delete(id)
-      .subscribe(res => console.log('success'), err => console.log(err));
+      .subscribe(res => this.ngOnInit(), err => console.log(err));
   }
 
 }

@@ -18,12 +18,34 @@
   </tbody>
 </table>
 <div class="wrapper">
-  <button id="addBtn" (click)="addNew(user)" title="Hozzáadás"><i class="fa fa-plus mx-auto"></i></button>
+  <button id="addBtn" (click)="addNew(usr)" title="Hozzáadás">Felhasználó hozzáadása</button>
+  <button id="addBtn" (click)="addNew(user)" title="Hozzáadás">Új felhasználó meghívása</button>
 </div>
+
+<ng-template #usr let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Felhasználó hozzáadása</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form role="form" method="POST" #myForm="ngForm">
+        <div class="form-group mx-auto">
+          <div class="input-group">
+            <p-multiSelect [options]="usersWithoutGroup" optionLabel="name" [(ngModel)]="updateUserList" name="updateUserList" id="updateUserList" [panelStyle]="{Width:'23em'}"></p-multiSelect>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-outline" id="saveBtn" (click)="addUsers(); modal.close('Save click')">Mentés</button>
+    </div>
+  </ng-template>
 
 <ng-template #user let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Új felhasználó hozzáadása</h4>
+      <h4 class="modal-title" id="modal-basic-title">Felhasználó meghívása</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -39,6 +61,6 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-outline" id="saveBtn" (click)="addUser(); modal.close('Save click')">Mentés</button>
+      <button type="submit" class="btn btn-outline" id="saveBtn" (click)="inviteUser(); modal.close('Save click')">Mentés</button>
     </div>
   </ng-template>

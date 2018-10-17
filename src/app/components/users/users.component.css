@@ -18,14 +18,18 @@ i {
 }
 
 #addBtn {
-  width: 60vw;
+  width: 30vw;
   border: 0;
   height: 40px;
   background-color: rgb(245, 245, 245);
   cursor: pointer;
 }
 
-button:hover {
+#addBtn:first-child {
+  border-right: 1px solid black;
+}
+
+#addBtn:hover {
   background-color: #ececec;
 }
 
@@ -43,4 +47,8 @@ button:hover {
 h3 {
   text-align: center;
   padding-top: 2%;
+}
+
+p-multiselect {
+  width: 100%;
 }

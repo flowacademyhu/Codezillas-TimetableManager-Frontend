@@ -10,7 +10,8 @@ export class UserService {
   users: User[];
   private groupListUrl = '/groups/';
   private userListUrl = '/users/';
-  private newUserUrl = '/createuser';
+  private updateUsersUrl = '/users/saveall';
+  private inviteUserUrl = '/createuser';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -18,9 +19,17 @@ export class UserService {
     return this.httpClient.get<User[]>(`${this.groupListUrl}${groupId}/users`);
   }
 
-  addNewUser(user, groupId) {
+  getUsersWithoutGroup(): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.groupListUrl}0/users`);
+  }
+
+  addUsers(users) {
+    return this.httpClient.post<User>(this.updateUsersUrl, users);
+  }
+
+  inviteNewUser(user, groupId) {
     user.groupId = groupId;
-    return this.httpClient.post<User>(this.newUserUrl, user);
+    return this.httpClient.post<User>(this.inviteUserUrl, user);
   }
 
   getMentors() {

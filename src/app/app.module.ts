@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {InputTextModule} from 'primeng/inputtext';
+import {CalendarModule} from 'primeng/calendar';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
     NgbModule,
     ColorPickerModule,
     MultiSelectModule,
-    InputTextModule
+    InputTextModule,
+    CalendarModule
   ],
   providers: [AuthService, ClassService, GroupService,
     SubjectService, UserService, {

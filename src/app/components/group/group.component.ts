@@ -36,16 +36,20 @@ export class GroupComponent implements OnInit {
     this.router.navigate([`groups/${groupId}/${groupName}`]);
   }
 
+  delete(groupId) {
+    this.groupService.delete(groupId).subscribe(res => this.onDeleteSuccess(), err => console.log(err));
+  }
+
+  onDeleteSuccess() {
+    this.router.navigate(['groups']);
+  }
+
   addNew(group) {
     this.modalService.open(group, { centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-  }
-
-  delete(groupId) {
-    this.groupService.delete(groupId).subscribe(res => console.log('success'), err => console.log(err));
   }
 
   private getDismissReason(reason: any): string {

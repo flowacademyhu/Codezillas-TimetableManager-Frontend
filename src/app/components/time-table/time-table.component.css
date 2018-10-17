@@ -47,6 +47,7 @@ dx-scheduler {
 @media (max-width: 1300px) {
   dx-scheduler {
     width: 70%;
+    margin-top: 25px;
   }
 }
 

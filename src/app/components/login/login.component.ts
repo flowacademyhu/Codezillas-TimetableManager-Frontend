@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSuccess(res) {
-    let jsonStr = JSON.stringify(res); 
-    let jsonData = JSON.parse(jsonStr); 
+    const jsonStr = JSON.stringify(res);
+    const jsonData = JSON.parse(jsonStr);
     sessionStorage.setItem('token', jsonData.token);
     sessionStorage.setItem('role', jsonData.roles);
     this.router.navigate(['timetable']);

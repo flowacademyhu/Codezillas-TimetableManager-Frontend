@@ -44,7 +44,7 @@ dx-scheduler {
   padding-right: 20px;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1400px) {
   dx-scheduler {
     width: 70%;
     margin-top: 25px;
@@ -63,4 +63,20 @@ dx-scheduler {
     margin-left: 50px;
     margin-top: 120px;
   }
+}
+
+.wrapper {
+  text-align: center;
+}
+
+.addBtn {
+  color: white;
+  background-color: #00bfb2;
+  width: 200px;
+  border-radius: 0.2rem;
+  border: none;
+}
+
+.addBtn:hover {
+  background-color: #09b3a7;
 }

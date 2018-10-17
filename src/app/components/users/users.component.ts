@@ -31,7 +31,7 @@ export class UsersComponent implements OnInit {
 
   removeFromGroup(user) {
     this.userService.removeFromGroup(user)
-      .subscribe(res => console.log('success'), err => console.log(err));
+      .subscribe(res => this.ngOnInit(), err => console.log(err));
   }
 
   addUser() {

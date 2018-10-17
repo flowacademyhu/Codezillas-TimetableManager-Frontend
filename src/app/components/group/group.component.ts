@@ -13,20 +13,7 @@ export class GroupComponent implements OnInit {
   closeResult: string;
   newGroup = {};
 
-  groups: Group[] = [{
-    id: 1,
-    name: 'Alfa'
-  }, {
-    id: 2,
-    name: 'Béta'
-  }, {
-    id: 3,
-    name: 'Gamma'
-  }, {
-    id: 4,
-    name: 'Delta'
-  }
-  ];
+  groups: Group[];
   constructor(private groupService: GroupService, private router: Router,
               private modalService: NgbModal) { }
 
@@ -55,6 +42,10 @@ export class GroupComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  delete(groupId) {
+    this.groupService.delete(groupId).subscribe(res => console.log('success'), err => console.log(err));
   }
 
   private getDismissReason(reason: any): string {

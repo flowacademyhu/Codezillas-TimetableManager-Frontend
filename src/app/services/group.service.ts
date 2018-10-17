@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GroupService {
   groups: Group[];
-  private groupListUrl = 'http://localhost:8080/groups';
+  private groupListUrl = '/groups/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -17,7 +17,15 @@ export class GroupService {
     return this.httpClient.get<Group[]>(this.groupListUrl);
   }
 
+  getOne(groupId): Observable<Group> {
+    return this.httpClient.get<Group>(`${this.groupListUrl}${groupId}`);
+  }
+
   newGroup(group) {
     return this.httpClient.post<Group>(this.groupListUrl, group);
+  }
+
+  delete(id) {
+    return this.httpClient.delete<Group>(`${this.groupListUrl}${id}`);
   }
 }

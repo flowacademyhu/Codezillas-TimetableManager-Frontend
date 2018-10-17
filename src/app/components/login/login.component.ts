@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '../../../../node_modules/@angular/router';
@@ -10,17 +11,22 @@ import { Router } from '../../../../node_modules/@angular/router';
 export class LoginComponent implements OnInit {
   loginUserData = {};
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, 
+    private router: Router) { }
 
   ngOnInit() {
   }
 
   loginUser() {
     this.authService.loginUser(this.loginUserData)
-      .subscribe(res => this.onLoginSuccess(), err => console.log(err));
+      .subscribe(res => this.onLoginSuccess(res), err => console.log(err));
   }
 
-  onLoginSuccess() {
+  onLoginSuccess(res) {
+    let jsonStr = JSON.stringify(res); 
+    let jsonData = JSON.parse(jsonStr); 
+    sessionStorage.setItem('token', jsonData.token);
+    sessionStorage.setItem('role', jsonData.roles);
     this.router.navigate(['timetable']);
   }
 

@@ -8,22 +8,27 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
   users: User[];
-  private groupListUrl = 'http://localhost:8080/groups';
-  private userListUrl = 'http://localhost:8080/createUser';
+  private groupListUrl = '/groups/';
+  private userListUrl = '/users/';
+  private newUserUrl = '/createuser';
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(groupId, groupName): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.groupListUrl}`, { params: { id: groupId, name: groupName } });
-  }
-
-  delete(id) {
-    return this.httpClient.delete<User>(`${this.userListUrl}/${id}`);
+  getUsersFromGroup(groupId): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.groupListUrl}${groupId}/users`);
   }
 
   addNewUser(user, groupId) {
     user.groupId = groupId;
-    console.log(user);
+    return this.httpClient.post<User>(this.newUserUrl, user);
+  }
+
+  getMentors() {
+    return this.httpClient.get<User[]>(this.userListUrl);
+  }
+
+  removeFromGroup(user) {
+    user.groupId = 0;
     return this.httpClient.post<User>(this.userListUrl, user);
   }
 }

@@ -5,6 +5,7 @@ export class Class {
     public endDate: Date,
     public startDate: Date,
     public groupId: number,
-    public subjectId: number
+    public subjectId: number,
+    public mentorIds: number[]
   ) { }
 }

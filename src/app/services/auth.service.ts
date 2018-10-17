@@ -16,7 +16,7 @@ export class AuthService {
   }
 
   loginUser(user) {
-    let body = new HttpParams()
+    const body = new HttpParams()
     .set('username', user.email)
     .set('password', user.password);
 
@@ -27,6 +27,7 @@ export class AuthService {
   }
 
   logout() {
+    sessionStorage.removeItem('token');
     this.router.navigate(['']);
   }
 

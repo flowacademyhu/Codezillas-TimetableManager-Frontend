@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -6,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { DxSchedulerModule, DxSchedulerComponent, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ColorPickerModule} from 'primeng/colorpicker';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {InputTextModule} from 'primeng/inputtext';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -46,6 +50,7 @@ const appRoutes: Routes = [
     ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
@@ -53,9 +58,13 @@ const appRoutes: Routes = [
     DxSchedulerModule,
     DxTemplateModule,
     DxButtonModule,
-    NgbModule
+    NgbModule,
+    ColorPickerModule,
+    MultiSelectModule,
+    InputTextModule
   ],
-  providers: [AuthService, ClassService, GroupService, SubjectService, UserService,{
+  providers: [AuthService, ClassService, GroupService,
+    SubjectService, UserService, {
     provide: HTTP_INTERCEPTORS,
     useClass: SpringbootInterceptor,
     multi: true

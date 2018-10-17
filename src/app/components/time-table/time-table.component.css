@@ -2,12 +2,12 @@
   padding: 14px;
 }
 
-::ng-deep .showtime-preview>div:first-child {
+::ng-deep .class-preview>div:first-child {
   font-size: 12px;
   white-space: normal;
 }
 
-::ng-deep .showtime-preview>div:not(:first-child) {
+::ng-deep .class-preview>div:not(:first-child) {
   font-size: 11px;
   white-space: normal;
 }

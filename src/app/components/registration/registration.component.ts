@@ -9,15 +9,17 @@ import { Router } from '../../../../node_modules/@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  confirmPassword: String;
   registerUserData = {} as User;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, 
+    private router: Router) { }
 
   ngOnInit() {
   }
 
   registerUser() {
-    if (this.registerUserData.password.length > 5 && this.registerUserData.password === this.registerUserData.confirmPassword) {
+    if (this.registerUserData.password.length > 5 && this.registerUserData.password === this.confirmPassword) {
       this.authService.registerUser(this.registerUserData)
         .subscribe(res => this.onRegistrationSuccess(), err => this.onError(err));
     }

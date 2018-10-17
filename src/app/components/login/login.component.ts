@@ -12,7 +12,8 @@ import { Router } from '../../../../node_modules/@angular/router';
 export class LoginComponent implements OnInit {
   loginUserData = {};
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, 
+    private router: Router) { }
 
   ngOnInit() {
   }

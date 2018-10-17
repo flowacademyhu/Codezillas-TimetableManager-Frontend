@@ -12,7 +12,7 @@ import { Router } from '../../../../node_modules/@angular/router';
 export class LoginComponent implements OnInit {
   loginUserData = {};
 
-  constructor(private authService: AuthService, 
+  constructor(private authService: AuthService,
     private router: Router) { }
 
   ngOnInit() {
@@ -26,9 +26,9 @@ export class LoginComponent implements OnInit {
   onLoginSuccess(res) {
     const jsonStr = JSON.stringify(res);
     const jsonData = JSON.parse(jsonStr);
-    window.localStorage.setItem('token', jsonData.token);
-    window.localStorage.setItem('userId', jsonData.userId);
-    window.localStorage.setItem('role', jsonData.roles);
+    localStorage.setItem('token', jsonData.token);
+    localStorage.setItem('userId', jsonData.userId);
+    localStorage.setItem('role', jsonData.roles);
     this.router.navigate(['timetable']);
   }
 

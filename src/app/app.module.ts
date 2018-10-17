@@ -56,7 +56,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes,{onSameUrlNavigation: 'ignore'}),
+    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'ignore'}),
     AngularFontAwesomeModule,
     DxSchedulerModule,
     DxTemplateModule,

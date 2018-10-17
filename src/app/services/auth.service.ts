@@ -27,15 +27,15 @@ export class AuthService {
   }
 
   logout() {
-    sessionStorage.clear();
+    localStorage.clear();
     this.router.navigate(['']);
   }
 
   loggedIn() {
-    return sessionStorage.getItem('token') ? true : false;
+    return localStorage.getItem('token') ? true : false;
   }
 
   getJsessionId() {
-    return window.localStorage.getItem('token');
+    return localStorage.getItem('token');
   }
 }

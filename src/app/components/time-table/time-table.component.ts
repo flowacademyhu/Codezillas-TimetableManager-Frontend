@@ -56,7 +56,7 @@ export class TimeTableComponent implements AfterViewInit {
 
     form.option('items', [{
       label: {
-        text: 'Subject'
+        text: 'Tantárgy'
       },
       editorType: 'dxSelectBox',
       dataField: 'subjectId',
@@ -66,6 +66,20 @@ export class TimeTableComponent implements AfterViewInit {
         valueExpr: 'id',
       }
     }, {
+      label: {
+        text: 'Mentor'
+      },
+      editorType: 'dxSelectBox',
+      dataField: 'userId',
+      editorOptions: {
+        items: that.subjects,
+        displayExpr: 'text',
+        valueExpr: 'id',
+      }
+    }, {
+      label: {
+        text: 'Ettől'
+      },
       dataField: 'startDate',
       editorType: 'dxDateBox',
       editorOptions: {
@@ -73,6 +87,9 @@ export class TimeTableComponent implements AfterViewInit {
         type: 'datetime',
       }
     }, {
+      label: {
+        text: 'Eddig'
+      },
       name: 'endDate',
       dataField: 'endDate',
       editorType: 'dxDateBox',
@@ -80,15 +97,13 @@ export class TimeTableComponent implements AfterViewInit {
         width: '100%',
         type: 'datetime'
       }
-    }]);
+    }
+  ]);
   }
 
-  /*
-  // cls refers to class
-  editDetails(cls) {
-    this.scheduler.instance.showAppointmentPopup(this.getDataObj(cls), false);
+  onAppointmentAdding(event) {
+    console.log(event.appointmentData);
   }
-*/
 
   delete(id) {
     this.classService.delete(id).subscribe(res =>

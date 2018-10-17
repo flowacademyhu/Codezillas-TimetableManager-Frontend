@@ -17,6 +17,7 @@ import { LoginComponent } from './components/login/login.component';
 import { TimeTableComponent } from './components/time-table/time-table.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { ClassService } from './services/class.service';
 import { GroupService } from './services/group.service';
@@ -31,10 +32,10 @@ import { SpringbootInterceptor } from './services/interceptor.service';
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'timetable', component: TimeTableComponent },
-  { path: 'subjects', component: SubjectComponent },
-  { path: 'groups', component: GroupComponent },
-  { path: 'groups/:id/:name', component: UsersComponent }
+  { path: 'timetable', component: TimeTableComponent, canActivate: [AuthGuard] },
+  { path: 'subjects', component: SubjectComponent, canActivate: [AuthGuard] },
+  { path: 'groups', component: GroupComponent, canActivate: [AuthGuard] },
+  { path: 'groups/:id/:name', component: UsersComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -65,7 +66,7 @@ const appRoutes: Routes = [
     InputTextModule,
     CalendarModule
   ],
-  providers: [AuthService, ClassService, GroupService,
+  providers: [AuthGuard, AuthService, ClassService, GroupService,
     SubjectService, UserService, {
     provide: HTTP_INTERCEPTORS,
     useClass: SpringbootInterceptor,

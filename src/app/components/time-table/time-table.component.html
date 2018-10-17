@@ -5,7 +5,7 @@
   [firstDayOfWeek]="0" [startDayHour]="9" [endDayHour]="18" [showAllDayPanel]="false" [currentDate]="currentDate"
   [crossScrollingEnabled]="true" [cellDuration]="30" [height]="550" appointmentTemplate="appointment-template"
   appointmentTooltipTemplate="tooltip-template" (onAppointmentFormCreated)="onAppointmentFormCreated($event)"
-  (onOptionChanged)="onOptionChanged($event)">
+  (onAppointmentAdding)="onAppointmentAdding($event)" (onOptionChanged)="onOptionChanged($event)">
 
   <dxo-editing [allowAdding]="true"></dxo-editing>
 

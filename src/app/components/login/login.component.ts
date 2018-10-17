@@ -27,11 +27,9 @@ export class LoginComponent implements OnInit {
     const jsonStr = JSON.stringify(res);
     const jsonData = JSON.parse(jsonStr);
     const user: User = jsonData.user;
-    /* console.log('user: ' + user); */
-    sessionStorage.setItem('token', jsonData.token);
-    sessionStorage.setItem('user', JSON.stringify(user));
-    sessionStorage.setItem('role', jsonData.roles);
-    
+    window.localStorage.setItem('token', jsonData.token);
+    window.localStorage.setItem('user', JSON.stringify(user));
+    window.localStorage.setItem('role', jsonData.roles);
     this.router.navigate(['timetable']);
   }
 

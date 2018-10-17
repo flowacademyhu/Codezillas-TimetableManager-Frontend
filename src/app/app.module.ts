@@ -33,7 +33,7 @@ const appRoutes: Routes = [
   { path: 'timetable', component: TimeTableComponent },
   { path: 'subjects', component: SubjectComponent },
   { path: 'groups', component: GroupComponent },
-  { path: 'groups/:id/:name', component: UsersComponent }
+  { path: 'groups/:id/:name', component: UsersComponent },
 ];
 
 @NgModule({
@@ -53,7 +53,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes,{onSameUrlNavigation: 'ignore'}),
     AngularFontAwesomeModule,
     DxSchedulerModule,
     DxTemplateModule,

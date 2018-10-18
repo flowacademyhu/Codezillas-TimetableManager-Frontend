@@ -27,8 +27,12 @@ export class AuthService {
   }
 
   logout() {
-    sessionStorage.removeItem('token');
+    sessionStorage.clear();
     this.router.navigate(['']);
+  }
+
+  loggedIn() {
+    return sessionStorage.getItem('token') ? true : false;
   }
 
   getJsessionId() {

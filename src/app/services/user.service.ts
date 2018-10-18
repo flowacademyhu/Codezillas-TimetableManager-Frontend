@@ -33,7 +33,7 @@ export class UserService {
   }
 
   getMentors() {
-    return this.httpClient.get<User[]>(this.userListUrl);
+    return this.httpClient.get<User[]>(`${this.groupListUrl}99993/users`);
   }
 
   removeFromGroup(user) {

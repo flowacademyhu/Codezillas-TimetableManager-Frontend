@@ -11,11 +11,12 @@ export class ClassService {
   private classListUrl = '/classes/';
   constructor(private httpClient: HttpClient) { }
 
-  getClasses(startDate: Date, endDate: Date): Observable<Class[]> {
+  getClasses(startDate: Date, endDate: Date, groupId?: number): Observable<Class[]> {
     const sds = startDate.getTime().toString();
     const sde = endDate.getTime().toString();
+    const id = groupId.toString();
     return this.httpClient.get<Class[]>(this.classListUrl + 'filter',
-     {params: {SDS: sds, SDE: sde}});
+     {params: {SDS: sds, SDE: sde, groupId: id}});
   }
 
   newClass(cls) {

@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Subject } from '../../models/subject.model';
 import { Class } from '../../models/class.model';
 import { ClassService } from '../../services/class.service';
@@ -14,7 +14,7 @@ import { User } from 'src/app/models/user.model';
   templateUrl: './time-table.component.html',
   styleUrls: ['./time-table.component.css']
 })
-export class TimeTableComponent implements OnInit, AfterViewInit {
+export class TimeTableComponent implements OnInit {
 
   @ViewChild(DxSchedulerComponent) scheduler: DxSchedulerComponent;
 
@@ -23,7 +23,7 @@ export class TimeTableComponent implements OnInit, AfterViewInit {
   subjects: Subject[] = [];
   mentors: User[] = [];
   currentDate = Date.now();
-  newClass: Class = {
+  newClass: any = {
     id: null,
     comment: '',
     endDate: null,
@@ -59,7 +59,7 @@ export class TimeTableComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
+  getClassesAndSubjects() {
     this.classService.getClasses(
       this.scheduler.instance.getStartViewDate(),
       this.scheduler.instance.getEndViewDate(),
@@ -84,66 +84,9 @@ export class TimeTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onAppointmentFormCreated(classes) {
-    const that = this,
-      form = classes.form,
-      // subjectInfo = that.getSubjectById(classes.appointmentData.subjectId) || {},
-      startDate = classes.appointmentData.startDate;
-
-    form.option('items', [{
-      label: {
-        text: 'Tantárgy'
-      },
-      editorType: 'dxSelectBox',
-      dataField: 'subjectId',
-      editorOptions: {
-        items: that.subjects,
-        displayExpr: 'text',
-        valueExpr: 'id',
-      }
-    }, {
-      label: {
-        text: 'Mentor'
-      },
-      editorType: 'dxSelectBox',
-      dataField: 'userId',
-      editorOptions: {
-        items: that.subjects,
-        displayExpr: 'text',
-        valueExpr: 'id',
-      }
-    }, {
-      label: {
-        text: 'Ettől'
-      },
-      dataField: 'startDate',
-      editorType: 'dxDateBox',
-      editorOptions: {
-        width: '100%',
-        type: 'datetime',
-      }
-    }, {
-      label: {
-        text: 'Eddig'
-      },
-      name: 'endDate',
-      dataField: 'endDate',
-      editorType: 'dxDateBox',
-      editorOptions: {
-        width: '100%',
-        type: 'datetime'
-      }
-    }
-  ]);
-  }
-
-  onAppointmentAdding(event) {
-    console.log(event.appointmentData);
-  }
-
   delete(id) {
     this.classService.delete(id).subscribe(res =>
-      this.ngAfterViewInit(), err => console.log(err));
+      this.getClassesAndSubjects(), err => console.log(err));
   }
 
   getDataObj(objData) {
@@ -165,8 +108,9 @@ export class TimeTableComponent implements OnInit, AfterViewInit {
   createClass() {
     this.newClass.groupId = this.selectedGroup.id;
     this.newClass.mentorIds.push(this.selectedMentor.id);
+    this.newClass.subjectId = this.selectedSubject.id;
     this.classService.newClass(this.newClass)
-      .subscribe(res => this.ngAfterViewInit(), err => console.log(err));
+      .subscribe(res => this.getClassesAndSubjects(), err => console.log(err));
   }
 
   addNew(cls) {

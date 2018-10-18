@@ -20,6 +20,9 @@ export class ClassService {
   }
 
   newClass(cls) {
+    cls.startDate = cls.startDate.getTime();
+    cls.endDate = cls.endDate.getTime();
+    console.log('wtf');
     return this.httpClient.post<Class>(this.classListUrl, cls);
   }
 

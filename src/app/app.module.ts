@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {InputTextModule} from 'primeng/inputtext';
+import {DropdownModule} from 'primeng/dropdown';
 import {CalendarModule} from 'primeng/calendar';
 
 import { AppComponent } from './app.component';
@@ -32,7 +33,7 @@ import { SpringbootInterceptor } from './services/interceptor.service';
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'timetable', component: TimeTableComponent, canActivate: [AuthGuard] },
+  { path: 'timetable', component: TimeTableComponent/* , canActivate: [AuthGuard] */ },
   { path: 'subjects', component: SubjectComponent, canActivate: [AuthGuard] },
   { path: 'groups', component: GroupComponent, canActivate: [AuthGuard] },
   { path: 'groups/:id/:name', component: UsersComponent, canActivate: [AuthGuard] }
@@ -64,6 +65,7 @@ const appRoutes: Routes = [
     ColorPickerModule,
     MultiSelectModule,
     InputTextModule,
+    DropdownModule,
     CalendarModule
   ],
   providers: [AuthGuard, AuthService, ClassService, GroupService,

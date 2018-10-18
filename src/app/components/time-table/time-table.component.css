@@ -73,8 +73,10 @@ dx-scheduler {
   color: white;
   background-color: #00bfb2;
   width: 200px;
+  height: 35px;
   border-radius: 0.2rem;
   border: none;
+  margin-left: 30px;
 }
 
 .addBtn:hover {

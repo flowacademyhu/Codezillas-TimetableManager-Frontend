@@ -1,25 +1,34 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { Subject } from '../../models/subject.model';
 import { Class } from '../../models/class.model';
 import { ClassService } from '../../services/class.service';
 import { SubjectService } from '../../services/subject.service';
 import { DxSchedulerComponent } from 'devextreme-angular';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Group } from 'src/app/models/group.model';
+import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-time-table',
   templateUrl: './time-table.component.html',
   styleUrls: ['./time-table.component.css']
 })
-export class TimeTableComponent implements AfterViewInit {
+export class TimeTableComponent implements /* OnInit, */ AfterViewInit {
 
   @ViewChild(DxSchedulerComponent) scheduler: DxSchedulerComponent;
 
-  closeResult: string;
+  closeResult: String;
   classes: Class[] = [];
   subjects: Subject[] = [];
   currentDate = Date.now();
   newClass = {};
+  groups: Group[] = [{
+    id: 1,
+    name: 'Alfa',
+    userIds: [1],
+    classIds: [1]
+  }];
+  selectedGroup: Group;
 
   constructor(private classService: ClassService, private subjectService: SubjectService, private modalService: NgbModal) {
   }
@@ -27,7 +36,8 @@ export class TimeTableComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.classService.getClasses(
       this.scheduler.instance.getStartViewDate(),
-      this.scheduler.instance.getEndViewDate()
+      this.scheduler.instance.getEndViewDate(),
+      this.selectedGroup.id
       ).subscribe((res) => {
       this.classes = res;
     });

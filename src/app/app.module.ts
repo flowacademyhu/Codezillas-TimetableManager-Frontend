@@ -33,7 +33,7 @@ import { SpringbootInterceptor } from './services/interceptor.service';
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'timetable', component: TimeTableComponent/* , canActivate: [AuthGuard] */ },
+  { path: 'timetable', component: TimeTableComponent, canActivate: [AuthGuard] },
   { path: 'subjects', component: SubjectComponent, canActivate: [AuthGuard] },
   { path: 'groups', component: GroupComponent, canActivate: [AuthGuard] },
   { path: 'groups/:id/:name', component: UsersComponent, canActivate: [AuthGuard] }

@@ -7,6 +7,7 @@ import { DxSchedulerComponent } from 'devextreme-angular';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Group } from 'src/app/models/group.model';
 import { GroupService } from 'src/app/services/group.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-time-table',
@@ -20,13 +21,22 @@ export class TimeTableComponent implements OnInit, AfterViewInit {
   closeResult: String;
   classes: Class[] = [];
   subjects: Subject[] = [];
+  mentors: User[] = [];
   currentDate = Date.now();
   newClass = {};
   groups: Group[];
   selectedGroup: Group;
+  selectedSubject: Subject;
 
   constructor(private classService: ClassService, private subjectService: SubjectService, private groupService: GroupService,
     private modalService: NgbModal) {
+  }
+
+  filterMentors() {
+    const subjectId = this.selectedSubject.id;
+    this.subjectService.getMentors(subjectId).subscribe(data => {
+      this.mentors = data;
+    });
   }
 
   ngOnInit() {

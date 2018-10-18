@@ -1,5 +1,6 @@
 <div class="wrapper">
-  <p-dropdown [options]="groups" [(ngModel)]="selectedGroup" placeholder="Válassz egy csoportot" optionLabel="name" (click)="ngAfterViewInit()"></p-dropdown>
+  <p-dropdown [options]="groups" [(ngModel)]="selectedGroup" placeholder="Válassz egy csoportot" optionLabel="name"
+    (click)="ngAfterViewInit()"></p-dropdown>
   <button class="addBtn mt-4" (click)="addNew(class)">Új óra felvétele</button>
 </div>
 <dx-scheduler id="scheduler" [dataSource]="classes" [views]="['day', 'workWeek']" currentView="workWeek"
@@ -18,6 +19,7 @@
       <div class='dropdown-appointment-dates'>
         {{(class.startDate | date:'shortTime') + ' - ' + (class.endDate | date:'shortTime')}}
       </div>
+      <div>{{getSubjectById(class.subjectId).comment}}</div>
     </div>
   </div>
 
@@ -39,21 +41,28 @@
   <div class="modal-body">
     <form role="form" method="POST" #myForm="ngForm">
       <div class="form-group mx-auto">
+        <p-dropdown [options]="subjects" [(ngModel)]="selectedSubject" placeholder="Tantárgy" optionLabel="title"
+          (click)="filterMentors()"></p-dropdown>
+      </div>
+      <div class="form-group mx-auto">
+        <p-dropdown [options]="mentors" [(ngModel)]="newClass.mentorIds" placeholder="Mentor" optionLabel="nickname"></p-dropdown>
+      </div>
+      <div class="form-group mx-auto">
         <label for="name">Kezdés</label>
         <div class="input-group">
-          <p-calendar showTime="true" hourFormat="24" [(ngModel)]="newClass.startDate"></p-calendar>
+          <p-calendar showTime="true" hourFormat="24" dateFormat="yy.mm.dd" [(ngModel)]="newClass.startDate"></p-calendar>
         </div>
       </div>
       <div class="form-group mx-auto">
         <label for="name">Befejezés</label>
         <div class="input-group">
-          <p-calendar showTime="true" hourFormat="24" [(ngModel)]="newClass.endDate"></p-calendar>
+          <p-calendar showTime="true" hourFormat="24" dateFormat="yy.mm.dd" [(ngModel)]="newClass.endDate"></p-calendar>
         </div>
       </div>
       <div class="form-group mx-auto">
         <label for="name">Megjegyzés</label>
         <div class="input-group">
-          <input [(ngModel)]="newClass.comment" id="comment" class="form-control" name="comment" required>
+          <input [(ngModel)]="newClass.comment" id="comment" class="form-control" name="comment" pInputText required>
         </div>
       </div>
     </form>

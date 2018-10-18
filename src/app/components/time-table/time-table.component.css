@@ -93,3 +93,11 @@ dx-scheduler {
   font-size: 20px;
   margin: auto !important;
 }
+
+form {
+  padding: 0% 4%;
+}
+
+.form-control {
+  width: 80%;
+}

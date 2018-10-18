@@ -13,7 +13,7 @@ import { GroupService } from 'src/app/services/group.service';
   templateUrl: './time-table.component.html',
   styleUrls: ['./time-table.component.css']
 })
-export class TimeTableComponent implements /* OnInit, */ AfterViewInit {
+export class TimeTableComponent implements OnInit, AfterViewInit {
 
   @ViewChild(DxSchedulerComponent) scheduler: DxSchedulerComponent;
 
@@ -22,15 +22,17 @@ export class TimeTableComponent implements /* OnInit, */ AfterViewInit {
   subjects: Subject[] = [];
   currentDate = Date.now();
   newClass = {};
-  groups: Group[] = [{
-    id: 1,
-    name: 'Alfa',
-    userIds: [1],
-    classIds: [1]
-  }];
+  groups: Group[];
   selectedGroup: Group;
 
-  constructor(private classService: ClassService, private subjectService: SubjectService, private modalService: NgbModal) {
+  constructor(private classService: ClassService, private subjectService: SubjectService, private groupService: GroupService,
+    private modalService: NgbModal) {
+  }
+
+  ngOnInit() {
+    this.groupService.getAll().subscribe(data => {
+      this.groups = data;
+    });
   }
 
   ngAfterViewInit() {

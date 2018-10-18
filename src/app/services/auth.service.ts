@@ -11,8 +11,8 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  registerUser(user) {
-    return this.http.post<any>(this.registerUrl, user);
+  registerUser(newUser) {
+    return this.http.post<any>(this.registerUrl, newUser);
   }
 
   loginUser(user) {
@@ -20,7 +20,7 @@ export class AuthService {
     .set('username', user.email)
     .set('password', user.password);
 
-  return this.http.post('/login', body.toString(), {
+  return this.http.post(this.loginUrl, body.toString(), {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
     });

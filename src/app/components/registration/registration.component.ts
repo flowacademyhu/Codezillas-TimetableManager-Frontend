@@ -20,17 +20,19 @@ export class RegistrationComponent implements OnInit {
 
   registerUser() {
     if (this.registerUserData.password.length > 5 && this.registerUserData.password === this.confirmPassword) {
+      console.log(this.registerUserData);
+      
       this.authService.registerUser(this.registerUserData)
         .subscribe(res => this.onRegistrationSuccess(), err => this.onError(err));
     }
   }
 
   onRegistrationSuccess() {
-    this.router.navigate(['timetable']);
+    alert('Sikeres regisztráció!');
+    this.router.navigate(['']);
   }
 
   onError(err) {
     alert(err.statusText);
   }
-
 }

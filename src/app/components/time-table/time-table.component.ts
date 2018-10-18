@@ -23,10 +23,24 @@ export class TimeTableComponent implements OnInit, AfterViewInit {
   subjects: Subject[] = [];
   mentors: User[] = [];
   currentDate = Date.now();
-  newClass = {};
-  groups: Group[];
+  newClass: Class = {
+    id: null,
+    comment: '',
+    endDate: null,
+    startDate: null,
+    groupId: null,
+    subjectId: null,
+    mentorIds: []
+  };
+  groups: Group[] = [{
+    id: 1,
+    name: 'Alfa',
+    userIds: [1],
+    classIds: [1]
+  }];
   selectedGroup: Group;
   selectedSubject: Subject;
+  selectedMentor: User;
 
   constructor(private classService: ClassService, private subjectService: SubjectService, private groupService: GroupService,
     private modalService: NgbModal) {
@@ -149,6 +163,8 @@ export class TimeTableComponent implements OnInit, AfterViewInit {
   }
 
   createClass() {
+    this.newClass.groupId = this.selectedGroup.id;
+    this.newClass.mentorIds.push(this.selectedMentor.id);
     this.classService.newClass(this.newClass)
       .subscribe(res => this.ngAfterViewInit(), err => console.log(err));
   }

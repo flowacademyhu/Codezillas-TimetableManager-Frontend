@@ -5,7 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { DxSchedulerModule, DxSchedulerComponent, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
+import { DxSchedulerModule, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {MultiSelectModule} from 'primeng/multiselect';
@@ -33,7 +33,7 @@ import { SpringbootInterceptor } from './services/interceptor.service';
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'timetable', component: TimeTableComponent/* , canActivate: [AuthGuard] */ },
+  { path: 'timetable', component: TimeTableComponent, canActivate: [AuthGuard] },
   { path: 'subjects', component: SubjectComponent, canActivate: [AuthGuard] },
   { path: 'groups', component: GroupComponent, canActivate: [AuthGuard] },
   { path: 'groups/:id/:name', component: UsersComponent, canActivate: [AuthGuard] }

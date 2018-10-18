@@ -8,11 +8,22 @@ import { Class } from '../models/class.model';
 })
 export class ClassService {
 
-  private classListUrl = '/classes';
+  private classListUrl = '/classes/';
   constructor(private httpClient: HttpClient) { }
 
-  getClasses(): Observable<Class[]> {
-    return this.httpClient.get<Class[]>('/classes/all');
+  getClasses(startDate: Date, endDate: Date): Observable<Class[]> {
+    const sds = startDate.getTime().toString();
+    const sde = endDate.getTime().toString();
+    return this.httpClient.get<Class[]>(this.classListUrl + 'filter',
+     {params: {SDS: sds, SDE: sde}});
+  }
+
+  newClass(cls) {
+    return this.httpClient.post<Class>(this.classListUrl, cls);
+  }
+
+  delete(id) {
+    return this.httpClient.delete<Class>(`${this.classListUrl}/${id}`);
   }
 
 }

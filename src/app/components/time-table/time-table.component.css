@@ -2,12 +2,12 @@
   padding: 14px;
 }
 
-::ng-deep .showtime-preview>div:first-child {
+::ng-deep .class-preview>div:first-child {
   font-size: 12px;
   white-space: normal;
 }
 
-::ng-deep .showtime-preview>div:not(:first-child) {
+::ng-deep .class-preview>div:not(:first-child) {
   font-size: 11px;
   white-space: normal;
 }
@@ -39,14 +39,15 @@
 dx-scheduler {
   position: fixed;
   width: 80vw;
-  margin-top: 80px;
+  margin-top: 30px;
   margin-left: 200px;
   padding-right: 20px;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1400px) {
   dx-scheduler {
     width: 70%;
+    margin-top: 25px;
   }
 }
 
@@ -62,4 +63,31 @@ dx-scheduler {
     margin-left: 50px;
     margin-top: 120px;
   }
+}
+
+.wrapper {
+  text-align: center;
+}
+
+.addBtn {
+  color: white;
+  background-color: #00bfb2;
+  width: 200px;
+  border-radius: 0.2rem;
+  border: none;
+}
+
+.addBtn:hover {
+  background-color: #09b3a7;
+}
+
+#saveBtn {
+  border: none;
+  border-radius: 0;
+  background-color: #00bfb2;
+  color: white;
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  margin: auto !important;
 }

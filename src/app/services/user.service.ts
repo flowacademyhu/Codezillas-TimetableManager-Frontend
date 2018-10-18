@@ -8,22 +8,36 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
   users: User[];
-  private groupListUrl = '/groups';
-  private userListUrl = '/createUser';
+  private groupListUrl = '/groups/';
+  private userListUrl = '/users/';
+  private updateUsersUrl = '/users/saveall';
+  private inviteUserUrl = '/createuser';
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(groupId, groupName): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.groupListUrl}`, { params: { id: groupId, name: groupName } });
+  getUsersFromGroup(groupId): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.groupListUrl}${groupId}/users`);
   }
 
-  delete(id) {
-    return this.httpClient.delete<User>(`${this.userListUrl}/${id}`);
+  getUsersWithoutGroup(): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.groupListUrl}0/users`);
   }
 
-  addNewUser(user, groupId) {
+  addUsers(users) {
+    return this.httpClient.post<User>(this.updateUsersUrl, users);
+  }
+
+  inviteNewUser(user, groupId) {
     user.groupId = groupId;
-    console.log(user);
+    return this.httpClient.post<User>(this.inviteUserUrl, user);
+  }
+
+  getMentors() {
+    return this.httpClient.get<User[]>(this.userListUrl);
+  }
+
+  removeFromGroup(user) {
+    user.groupId = 0;
     return this.httpClient.post<User>(this.userListUrl, user);
   }
 }

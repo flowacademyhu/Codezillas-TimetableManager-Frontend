@@ -11,26 +11,27 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  registerUser(user) {
-    return this.http.post<any>(this.registerUrl, user);
+  registerUser(newUser) {
+    return this.http.post<any>(this.registerUrl, newUser);
   }
 
   loginUser(user) {
-    let body = new HttpParams()
+    const body = new HttpParams()
     .set('username', user.email)
     .set('password', user.password);
 
-  return this.http.post('/login', body.toString(), {
+  return this.http.post(this.loginUrl, body.toString(), {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
     });
   }
 
   logout() {
+    sessionStorage.removeItem('token');
     this.router.navigate(['']);
   }
 
   getJsessionId() {
-    return sessionStorage.getItem('token');
+    return window.localStorage.getItem('token');
   }
 }

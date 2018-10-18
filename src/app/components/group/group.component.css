@@ -1,4 +1,4 @@
-.buttons{
+.buttons {
   height: 90vh;
   width: 100vw;
   padding-top: 2%;
@@ -30,6 +30,21 @@
   margin: auto !important;
 }
 
+.btnContent {
+  padding-bottom: 50px;
+}
+
+.btn .fa-times {
+  font-size: 14px;
+  padding-left: 100px;
+  padding-bottom: 30px;
+  visibility: hidden;
+}
+
+.btn:hover .fa-times {
+  visibility: visible;
+}
+
 @media (max-width: 700px) {
   .buttons {
     padding-top: 15%;
@@ -40,16 +55,12 @@
     height: 100px;
     margin-left: 15px !important;
   }
-
-  h3 {
-    font-size: 20px;
-  }
 }
 
 i {
   font-size: 60px;
 }
 
-h3 {
+h5 {
   text-shadow: 1px 1px grey;
 }

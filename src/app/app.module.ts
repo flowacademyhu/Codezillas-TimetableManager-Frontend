@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -6,6 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { DxSchedulerModule, DxSchedulerComponent, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ColorPickerModule} from 'primeng/colorpicker';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {InputTextModule} from 'primeng/inputtext';
+import {CalendarModule} from 'primeng/calendar';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -29,7 +34,7 @@ const appRoutes: Routes = [
   { path: 'timetable', component: TimeTableComponent },
   { path: 'subjects', component: SubjectComponent },
   { path: 'groups', component: GroupComponent },
-  { path: 'groups/:id/:name', component: UsersComponent }
+  { path: 'groups/:id/:name', component: UsersComponent },
 ];
 
 @NgModule({
@@ -46,16 +51,22 @@ const appRoutes: Routes = [
     ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes,{onSameUrlNavigation: 'ignore'}),
     AngularFontAwesomeModule,
     DxSchedulerModule,
     DxTemplateModule,
     DxButtonModule,
-    NgbModule
+    NgbModule,
+    ColorPickerModule,
+    MultiSelectModule,
+    InputTextModule,
+    CalendarModule
   ],
-  providers: [AuthService, ClassService, GroupService, SubjectService, UserService,{
+  providers: [AuthService, ClassService, GroupService,
+    SubjectService, UserService, {
     provide: HTTP_INTERCEPTORS,
     useClass: SpringbootInterceptor,
     multi: true

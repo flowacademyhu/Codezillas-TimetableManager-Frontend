@@ -1,33 +1,51 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Subject } from '../../models/subject.model';
 import { Class } from '../../models/class.model';
 import { ClassService } from '../../services/class.service';
 import { SubjectService } from '../../services/subject.service';
 import { DxSchedulerComponent } from 'devextreme-angular';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-time-table',
   templateUrl: './time-table.component.html',
   styleUrls: ['./time-table.component.css']
 })
-export class TimeTableComponent implements OnInit {
+export class TimeTableComponent implements AfterViewInit {
 
   @ViewChild(DxSchedulerComponent) scheduler: DxSchedulerComponent;
 
-  classes: Class[];
-  subjects: Subject[];
-  currentDate: Date = new Date(2018, 9, 8);
+  closeResult: string;
+  classes: Class[] = [];
+  subjects: Subject[] = [];
+  currentDate = Date.now();
+  newClass = {};
 
-  constructor(private classService: ClassService, private subjectService: SubjectService) {
+  constructor(private classService: ClassService, private subjectService: SubjectService, private modalService: NgbModal) {
   }
 
-  ngOnInit() {
-    this.classService.getClasses().subscribe((res) => {
+  ngAfterViewInit() {
+    this.classService.getClasses(
+      this.scheduler.instance.getStartViewDate(),
+      this.scheduler.instance.getEndViewDate()
+      ).subscribe((res) => {
       this.classes = res;
     });
     this.subjectService.getSubjects().subscribe((res) => {
       this.subjects = res;
     });
+  }
+
+  onOptionChanged(event) {
+    if (event.name === 'currentDate') {
+      this.scheduler.instance.repaint();
+      this.classService.getClasses(
+        this.scheduler.instance.getStartViewDate(),
+        this.scheduler.instance.getEndViewDate()
+        ).subscribe((res) => {
+        this.classes = res;
+     });
+    }
   }
 
   onAppointmentFormCreated(classes) {
@@ -60,14 +78,21 @@ export class TimeTableComponent implements OnInit {
       editorType: 'dxDateBox',
       editorOptions: {
         width: '100%',
-        type: 'datetime',
-        readOnly: true
+        type: 'datetime'
       }
     }]);
   }
 
-  editDetails(showtime) {
-    this.scheduler.instance.showAppointmentPopup(this.getDataObj(showtime), false);
+  /*
+  // cls refers to class
+  editDetails(cls) {
+    this.scheduler.instance.showAppointmentPopup(this.getDataObj(cls), false);
+  }
+*/
+
+  delete(id) {
+    this.classService.delete(id).subscribe(res =>
+      this.ngAfterViewInit(), err => console.log(err));
   }
 
   getDataObj(objData) {
@@ -84,5 +109,28 @@ export class TimeTableComponent implements OnInit {
       }
     }
     return 'name not found';
+  }
+
+  createClass() {
+    this.classService.newClass(this.newClass)
+      .subscribe(res => this.ngAfterViewInit(), err => console.log(err));
+  }
+
+  addNew(cls) {
+    this.modalService.open(cls, { centered: true }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }

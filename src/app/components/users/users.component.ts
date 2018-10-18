@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-users',
@@ -13,47 +14,38 @@ export class UsersComponent implements OnInit {
   closeResult: string;
   groupId: String;
   groupName: String;
+  users: User[];
+  usersWithoutGroup: User[];
   newUser = {};
-  users: User[] = [{
-    id: 1,
-    name: 'kutya',
-    nickname: 'kutyi',
-    email: 'kutya@gmail.com',
-    password: 'fdsf',
-    confirmPassword: 'ffsdf'
-  }, {
-    id: 2,
-    name: 'kacsa',
-    nickname: 'Bubó',
-    email: 'kacsa@gmail.com',
-    password: 'fdsf',
-    confirmPassword: 'ffsdf'
-  }, {
-    id: 3,
-    name: 'cica',
-    nickname: 'cicuka',
-    email: 'cica@gmail.com',
-    password: 'fdsf',
-    confirmPassword: 'ffsdf'
-  }];
+  updateUserList = [];
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private modalService: NgbModal) {
+  constructor(private userService: UserService, private groupService: GroupService, private route: ActivatedRoute,
+    private modalService: NgbModal) {
     this.groupId = route.snapshot['_routerState'].url.split('/')[2];
-    this.groupName = route.snapshot['_routerState'].url.split('/')[3];
   }
 
   ngOnInit() {
-    this.userService.getAll(this.groupId, this.groupName).subscribe(res => this.users = res, err => console.log(err));
+    this.userService.getUsersFromGroup(this.groupId).subscribe(res => this.users = res, err => console.log(err));
+    this.userService.getUsersWithoutGroup().subscribe(res => this.usersWithoutGroup = res, err => console.log(err));
+    this.groupService.getOne(this.groupId).subscribe(group => this.groupName = group.name, err => console.log(err));
   }
 
-  delete(id) {
-    this.userService.delete(id)
-      .subscribe(res => console.log('success'), err => console.log(err));
+  removeFromGroup(user) {
+    this.userService.removeFromGroup(user)
+      .subscribe(res => this.ngOnInit(), err => console.log(err));
   }
 
-  addUser() {
-    this.userService.addNewUser(this.newUser, this.groupId)
-      .subscribe(res => console.log('success'), err => console.log(err));
+  addUsers() {
+    this.updateUserList.forEach(user => {
+      user.groupId = this.groupId;
+    });
+    this.userService.addUsers(this.updateUserList)
+      .subscribe(res => this.ngOnInit(), err => console.log(err));
+  }
+
+  inviteUser() {
+    this.userService.inviteNewUser(this.newUser, this.groupId)
+      .subscribe(res => this.ngOnInit(), err => console.log(err));
   }
 
   addNew(user) {

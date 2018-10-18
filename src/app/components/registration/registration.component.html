@@ -7,17 +7,17 @@
     <div class="form-bottom">
       <form role="form" action="" method="post" class="registration-form">
         <div class="form-group iconInside">
-          <label class="sr-only" for="name">Név</label>
+          <label class="sr-only" for="name">Teljes név (vezetéknév, keresztnév)</label>
           <i class="fa fa-user" id="icon"></i>
-          <input [(ngModel)]="registerUserData.name" type="text" name="name" placeholder="Név" class="form-control"
-            id="name" required>
+          <input [(ngModel)]="registerUserData.name" type="text" name="name" placeholder="Név" class="form-control" id="name"
+            required>
         </div>
         <div class="form-group iconInside">
-            <label class="sr-only" for="nickname">Becenév</label>
-            <i class="fa fa-user-secret" id="icon"></i>
-            <input [(ngModel)]="registerUserData.nickname" type="text" name="nickname" placeholder="Becenév" class="form-control"
-              id="nickname" required>
-          </div>
+          <label class="sr-only" for="nickname">Becenév</label>
+          <i class="fa fa-user-secret" id="icon"></i>
+          <input [(ngModel)]="registerUserData.nickname" type="text" name="nickname" placeholder="Becenév" class="form-control"
+            id="nickname" required>
+        </div>
         <div class="form-group iconInside">
           <label class="sr-only" for="email">E-mail cím</label>
           <i class="fa fa-envelope" id="icon"></i>
@@ -31,11 +31,17 @@
             id="password" required minlength="6" maxlength="30">
         </div>
         <div class="form-group iconInside">
-            <label class="sr-only" for="confirmPassword">Jelszó megerősítése</label>
-            <i class="fa fa-lock" id="icon"></i>
-            <input [(ngModel)]="registerUserData.confirmPassword" type="password" name="confirmPassword" placeholder="Jelszó megerősítése" class="form-control"
-              id="confirmPassword" required minlength="6" maxlength="30">
-          </div>
+          <label class="sr-only" for="confirmPassword">Jelszó megerősítése</label>
+          <i class="fa fa-lock" id="icon"></i>
+          <input [(ngModel)]="confirmPassword" type="password" name="confirmPassword" placeholder="Jelszó megerősítése"
+            class="form-control" id="confirmPassword" required minlength="6" maxlength="30">
+        </div>
+        <div class="form-group iconInside">
+          <label class="sr-only" for="activationCode">Aktivációs kód</label>
+          <i class="fa fa-barcode" id="icon"></i>
+          <input [(ngModel)]="registerUserData.activationCode" type="text" name="activationCode" placeholder="Aktivációs kód"
+            class="form-control" id="activationCode" required>
+        </div>
         <button (click)="registerUser()" type="submit" class="btn btn-block mt-5 mx-auto">REGISZTRÁCIÓ</button>
       </form>
     </div>

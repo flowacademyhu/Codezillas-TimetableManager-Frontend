@@ -26,9 +26,8 @@ export class LoginComponent implements OnInit {
   onLoginSuccess(res) {
     const jsonStr = JSON.stringify(res);
     const jsonData = JSON.parse(jsonStr);
-    const user: User = jsonData.user;
     window.localStorage.setItem('token', jsonData.token);
-    window.localStorage.setItem('user', JSON.stringify(user));
+    window.localStorage.setItem('userId', jsonData.userId);
     window.localStorage.setItem('role', jsonData.roles);
     this.router.navigate(['timetable']);
   }

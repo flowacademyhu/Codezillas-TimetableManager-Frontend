@@ -39,14 +39,15 @@
 dx-scheduler {
   position: fixed;
   width: 80vw;
-  margin-top: 80px;
+  margin-top: 30px;
   margin-left: 200px;
   padding-right: 20px;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1400px) {
   dx-scheduler {
     width: 70%;
+    margin-top: 25px;
   }
 }
 
@@ -62,4 +63,42 @@ dx-scheduler {
     margin-left: 50px;
     margin-top: 120px;
   }
+}
+
+.wrapper {
+  text-align: center;
+}
+
+.addBtn {
+  color: white;
+  background-color: #00bfb2;
+  width: 200px;
+  height: 35px;
+  border-radius: 0.2rem;
+  border: none;
+  margin-left: 30px;
+}
+
+.addBtn:hover {
+  background-color: #09b3a7;
+}
+
+#saveBtn {
+  border: none;
+  border-radius: 0;
+  background-color: #00bfb2;
+  color: white;
+  width: 200px;
+  height: 40px;
+  font-size: 20px;
+  margin: auto !important;
+}
+
+form {
+  padding: 0% 4%;
+}
+
+::placeholder {
+  color: #333333;
+  font-size: 14px;
 }

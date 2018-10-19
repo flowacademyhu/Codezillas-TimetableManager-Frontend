@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Subject } from '../models/subject.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,10 @@ export class SubjectService {
 
   getSubjects(): Observable<Subject[]> {
     return this.httpClient.get<Subject[]>(this.subjectListUrl);
+  }
+
+  getMentors(id) {
+    return this.httpClient.get<User[]>(`${this.subjectListUrl}/${id}/users`);
   }
 
   addNewSubject(subject) {

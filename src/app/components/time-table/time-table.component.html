@@ -1,7 +1,7 @@
 <div class="wrapper">
   <p-dropdown [options]="groups" [(ngModel)]="selectedGroup" placeholder="Válassz egy csoportot" optionLabel="name"
     (click)="getClassesAndSubjects()"></p-dropdown>
-  <button class="addBtn mt-4" (click)="addNew(class)">Új óra felvétele</button>
+  <button [disabled]="isInvalid()" class="addBtn mt-4" (click)="addNew(class)">Új óra felvétele</button>
 </div>
 <dx-scheduler id="scheduler" [dataSource]="classes" [views]="['day', 'workWeek']" currentView="workWeek"
   [firstDayOfWeek]="0" [startDayHour]="9" [endDayHour]="18" [showAllDayPanel]="false" [currentDate]="currentDate"
@@ -16,9 +16,9 @@
     <div class='class-preview'>
       <div>{{getSubjectById(class.subjectId).title}}</div>
       <div class='dropdown-appointment-dates'>
-        {{(class.startDate | date:'shortTime') + ' - ' + (class.endDate | date:'shortTime')}}
+        {{(class.startDate | date:'HH:mm') + ' - ' + (class.endDate | date:'HH:mm')}}
       </div>
-      <div>{{getSubjectById(class.subjectId).comment}}</div>
+      <div>{{class.comment}}</div>
     </div>
   </div>
 
@@ -40,6 +40,14 @@
   <div class="modal-body">
     <form role="form" method="POST" #myForm="ngForm">
       <div class="form-group mx-auto">
+        <div class="input-group">
+          <p-calendar class="mr-4" showTime="true" hourFormat="24" dateFormat="yy.mm.dd" placeholder="Kezdés" [(ngModel)]="newClass.startDate" id="startDate"
+            name="startDate" [inputStyle]="{'width': '200px'}" required></p-calendar>
+          <p-calendar showTime="true" hourFormat="24" dateFormat="yy.mm.dd" placeholder="Befejezés" [(ngModel)]="newClass.endDate" id="endDate"
+            name="endDate" [inputStyle]="{'width': '200px'}" required></p-calendar>
+        </div>
+      </div>
+      <div class="form-group mx-auto">
         <p-dropdown [options]="subjects" [(ngModel)]="selectedSubject" name="selectedSubject" placeholder="Tantárgy"
           optionLabel="title" (click)="filterMentors()" [style]="{'width':'100%'}" required></p-dropdown>
       </div>
@@ -48,23 +56,8 @@
           optionLabel="nickname" [style]="{'width':'100%'}" required></p-dropdown>
       </div>
       <div class="form-group mx-auto">
-        <label for="startDate">Kezdés</label>
         <div class="input-group">
-          <p-calendar showTime="true" hourFormat="24" dateFormat="yy.mm.dd" [(ngModel)]="newClass.startDate" id="startDate"
-            name="startDate" [inputStyle]="{'width': '430px'}" required></p-calendar>
-        </div>
-      </div>
-      <div class="form-group mx-auto">
-        <label for="endDate">Befejezés</label>
-        <div class="input-group">
-          <p-calendar showTime="true" hourFormat="24" dateFormat="yy.mm.dd" [(ngModel)]="newClass.endDate" id="endDate"
-            name="endDate" [inputStyle]="{'width': '430px'}" required></p-calendar>
-        </div>
-      </div>
-      <div class="form-group mx-auto">
-        <label for="comment">Megjegyzés</label>
-        <div class="input-group">
-          <input [(ngModel)]="newClass.comment" class="form-control" id="comment" name="comment" pInputText>
+          <input [(ngModel)]="newClass.comment" class="form-control" placeholder="Megjegyzés" id="comment" name="comment" pInputText>
         </div>
       </div>
     </form>

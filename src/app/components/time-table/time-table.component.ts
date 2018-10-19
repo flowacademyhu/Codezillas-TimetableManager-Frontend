@@ -89,13 +89,6 @@ export class TimeTableComponent implements OnInit {
       this.getClassesAndSubjects(), err => console.log(err));
   }
 
-  getDataObj(objData) {
-    for (let i = 0; i < this.classes.length; i++) {
-      return this.classes[i];
-    }
-    return null;
-  }
-
   getSubjectById(id) {
     for (let i = 0; i < this.subjects.length; i++) {
       if (id === this.subjects[i].id) {
@@ -103,6 +96,14 @@ export class TimeTableComponent implements OnInit {
       }
     }
     return 'name not found';
+  }
+
+  isInvalid() {
+    if (!this.selectedGroup) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   createClass() {

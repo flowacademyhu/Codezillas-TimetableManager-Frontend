@@ -126,6 +126,15 @@ export class TimeTableComponent implements OnInit {
     this.newClass.subjectId = this.selectedSubject.id;
     this.classService.newClass(this.newClass)
       .subscribe(res => this.getClassesAndSubjects(), err => console.log(err));
+      this.newClass = {
+        id: null,
+        comment: '',
+        endDate: null,
+        startDate: null,
+        groupId: null,
+        subjectId: null,
+        mentorIds: []
+      };
   }
 
   addNew(cls) {

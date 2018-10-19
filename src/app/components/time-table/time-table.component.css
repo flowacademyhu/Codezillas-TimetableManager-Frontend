@@ -97,3 +97,8 @@ dx-scheduler {
 form {
   padding: 0% 4%;
 }
+
+::placeholder {
+  color: #333333;
+  font-size: 14px;
+}

@@ -5,7 +5,7 @@
 </div>
 <dx-scheduler id="scheduler" [dataSource]="classes" [views]="['day', 'workWeek']" currentView="workWeek"
   [firstDayOfWeek]="0" [startDayHour]="9" [endDayHour]="18" [showAllDayPanel]="false" [currentDate]="currentDate"
-  [crossScrollingEnabled]="true" [cellDuration]="30" [height]="550" appointmentTemplate="appointment-template"
+  [crossScrollingEnabled]="true" [cellDuration]="60" [height]="550" appointmentTemplate="appointment-template"
   appointmentTooltipTemplate="tooltip-template" (onOptionChanged)="onOptionChanged($event)">
 
   <dxo-editing [allowAdding]="true"></dxo-editing>
@@ -14,13 +14,15 @@
   </dxi-resource>
   <div [ngStyle]="{backgroundColor: getSubjectById(class.fk_id_subject).color}" *dxTemplate="let class of 'appointment-template'">
     <div class='class-preview'>
-      <div>{{getSubjectById(class.subjectId).title}}</div>
       <div class='dropdown-appointment-dates'>
         {{(class.startDate | date:'HH:mm') + ' - ' + (class.endDate | date:'HH:mm')}}
       </div>
+      <div>{{getSubjectById(class.subjectId).title}}</div>
+      <div>( {{getMentorById(class.mentorIds[0]).nickname}} )</div>
       <div>{{class.comment}}</div>
     </div>
   </div>
+  
 
   <div *dxTemplate="let class of 'tooltip-template'">
     <div class='subject-tooltip'>

@@ -8,6 +8,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Group } from 'src/app/models/group.model';
 import { GroupService } from 'src/app/services/group.service';
 import { User } from 'src/app/models/user.model';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-time-table',
@@ -19,6 +20,7 @@ export class TimeTableComponent implements OnInit {
   @ViewChild(DxSchedulerComponent) scheduler: DxSchedulerComponent;
 
   closeResult: String;
+  mentorList: User[] = [];
   classes: Class[] = [];
   subjects: Subject[] = [];
   mentors: User[] = [];
@@ -43,7 +45,7 @@ export class TimeTableComponent implements OnInit {
   selectedMentor: User;
 
   constructor(private classService: ClassService, private subjectService: SubjectService, private groupService: GroupService,
-    private modalService: NgbModal) {
+    private userService: UserService, private modalService: NgbModal) {
   }
 
   filterMentors() {
@@ -53,9 +55,21 @@ export class TimeTableComponent implements OnInit {
     });
   }
 
+  getMentorById(mentorId) {
+    for (let i = 0; i < this.mentorList.length; i++) {
+      if (mentorId === this.mentorList[i].id) {
+        return this.mentorList[i];
+      }
+    }
+    return 'name not found';
+  }
+
   ngOnInit() {
     this.groupService.getAll().subscribe(data => {
       this.groups = data;
+    });
+    this.userService.getMentors().subscribe(data => {
+      this.mentorList = data;
     });
   }
 

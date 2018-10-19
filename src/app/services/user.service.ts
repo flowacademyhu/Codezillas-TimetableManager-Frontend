@@ -36,6 +36,10 @@ export class UserService {
     return this.httpClient.get<User[]>(`${this.groupListUrl}99993/users`);
   }
 
+  getMentorById(id): Observable<User> {
+    return this.httpClient.get<User>(`${this.userListUrl}${id}`);
+  }
+
   removeFromGroup(user) {
     user.groupId = 0;
     return this.httpClient.post<User>(this.userListUrl, user);
